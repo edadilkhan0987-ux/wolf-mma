@@ -30,7 +30,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Added overflow-x: hidden to prevent accidental side-scrolling on mobile */
         body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f3f4f6; overflow-x: hidden; }
         
         .hero-gradient {
@@ -101,7 +100,7 @@
     <nav class="fixed top-0 left-0 right-0 z-40 bg-darkBg/90 backdrop-blur-md border-b border-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <a href="#home" class="flex items-center space-x-3 sm:space-x-4 group">
+                <a href="index.html" class="flex items-center space-x-3 sm:space-x-4 group">
                     <div class="w-14 h-14 sm:w-20 sm:h-20 shrink-0 rounded-xl overflow-hidden bg-black flex items-center justify-center group-hover:scale-105 transition-transform border border-gray-800 shadow-md">
                         <img src="logo.jpeg" alt="Wolf MMA Fitness Logo" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/100x100/131c2e/f59e0b?text=WOLF'">
                     </div>
@@ -112,7 +111,7 @@
                 </a>
 
                 <div class="hidden md:flex items-center space-x-6 lg:space-x-8 text-sm font-semibold tracking-wide">
-                    <a href="#home" class="hover:text-accentGold transition-colors">Home</a>
+                    <a href="index.html" class="hover:text-accentGold transition-colors">Home</a>
                     <a href="#about" class="hover:text-accentGold transition-colors">About</a>
                     <a href="#programs" class="hover:text-accentGold transition-colors">Programs</a>
                     <a href="#plans" class="hover:text-accentGold transition-colors">Our Plans</a>
@@ -137,7 +136,7 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-cardBg border-b border-gray-800 px-4 pt-2 pb-6 space-y-3">
-            <a href="#home" class="block py-2 text-base font-medium hover:text-accentGold">Home</a>
+            <a href="index.html" class="block py-2 text-base font-medium hover:text-accentGold">Home</a>
             <a href="#about" class="block py-2 text-base font-medium hover:text-accentGold">About</a>
             <a href="#programs" class="block py-2 text-base font-medium hover:text-accentGold">Programs</a>
             <a href="#plans" class="block py-2 text-base font-medium hover:text-accentGold">Our Plans</a>
@@ -706,7 +705,7 @@
                 <div>
                     <h4 class="font-bold text-xs sm:text-sm uppercase text-white mb-3 sm:mb-4 tracking-wider">Quick Links</h4>
                     <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#home" class="hover:text-accentGold transition-colors">Home</a></li>
+                        <li><a href="index.html" class="hover:text-accentGold transition-colors">Home</a></li>
                         <li><a href="#about" class="hover:text-accentGold transition-colors">About Academy</a></li>
                         <li><a href="#programs" class="hover:text-accentGold transition-colors">Programs</a></li>
                         <li><a href="#plans" class="hover:text-accentGold transition-colors">Our Plans</a></li>
@@ -716,10 +715,10 @@
                 <div>
                     <h4 class="font-bold text-xs sm:text-sm uppercase text-white mb-3 sm:mb-4 tracking-wider">Disciplines</h4>
                     <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#programs" class="hover:text-accentGold transition-colors">MMA</a></li>
-                        <li><a href="#programs" class="hover:text-accentGold transition-colors">BJJ / Wrestling</a></li>
-                        <li><a href="#programs" class="hover:text-accentGold transition-colors">Kickboxing / Muay Thai</a></li>
-                        <li><a href="#programs" class="hover:text-accentGold transition-colors">Strength & Conditioning</a></li>
+                        <li><a href="program-mma.html" class="hover:text-accentGold transition-colors">MMA</a></li>
+                        <li><a href="program-bjj.html" class="hover:text-accentGold transition-colors">BJJ / Wrestling</a></li>
+                        <li><a href="program-kickboxing.html" class="hover:text-accentGold transition-colors">Kickboxing / Muay Thai</a></li>
+                        <li><a href="program-strength.html" class="hover:text-accentGold transition-colors">Strength & Conditioning</a></li>
                     </ul>
                 </div>
 
@@ -782,18 +781,18 @@
         btnSingle.addEventListener('click', () => setPricingMode('single'));
         btnCouple.addEventListener('click', () => setPricingMode('couple'));
 
-        // Programs List
+        // Programs List (UPDATED WITH LINKS)
         const programs = [
-            { name: 'MMA', icon: 'fa-fire', tag: 'Combat Sport', desc: 'Striking, wrestling and submission grappling combined in one complete system.' },
-            { name: 'BJJ / Wrestling', icon: 'fa-user-ninja', tag: 'Grappling', desc: 'Leverage, joint locks, takedowns and chokeholds. Learn how technique beats strength.' },
-            { name: 'Kickboxing / Muay Thai', icon: 'fa-bolt', tag: 'Striking', desc: 'Punches, kicks, knees and elbows. Build power, speed and stamina.' },
-            { name: 'Karate / Kung Fu', icon: 'fa-yin-yang', tag: 'Traditional Art', desc: 'Traditional forms, discipline and technique, taught by expert martial arts masters.' },
-            { name: 'Gymnastic / Parkour', icon: 'fa-person-running', tag: 'Acrobatics', desc: 'Body control, flips, vaults, and agility training to move freely through any environment.' },
-            { name: 'Strength / Conditioning', icon: 'fa-dumbbell', tag: 'Fitness', desc: 'Functional strength, weight loss, and body shaping for athletic performance.' },
-            { name: 'Calisthenics', icon: 'fa-child', tag: 'Fitness', desc: 'Build strength, control and mobility using your own bodyweight.' },
-            { name: 'Boxing', icon: 'fa-hand-fist', tag: 'Striking', desc: 'Footwork, punch combinations, defence and bag work with a certified boxing coach.' },
-            { name: 'Personal Training (1-on-1)', icon: 'fa-user-check', tag: '1-on-1', desc: 'A plan built around your goals, with a coach focused only on you.' },
-            { name: 'Kids / Youth Self-Defense', icon: 'fa-shield-halved', tag: 'Youth', desc: 'Confidence, discipline, coordination and self-defense in a safe, structured class.' }
+            { name: 'MMA', icon: 'fa-fire', tag: 'Combat Sport', desc: 'Striking, wrestling and submission grappling combined in one complete system.', link: 'program-mma.html' },
+            { name: 'BJJ / Wrestling', icon: 'fa-user-ninja', tag: 'Grappling', desc: 'Leverage, joint locks, takedowns and chokeholds. Learn how technique beats strength.', link: 'program-bjj.html' },
+            { name: 'Kickboxing / Muay Thai', icon: 'fa-bolt', tag: 'Striking', desc: 'Punches, kicks, knees and elbows. Build power, speed and stamina.', link: 'program-kickboxing.html' },
+            { name: 'Karate / Kung Fu', icon: 'fa-yin-yang', tag: 'Traditional Art', desc: 'Traditional forms, discipline and technique, taught by expert martial arts masters.', link: 'program-karate.html' },
+            { name: 'Gymnastic / Parkour', icon: 'fa-person-running', tag: 'Acrobatics', desc: 'Body control, flips, vaults, and agility training to move freely through any environment.', link: 'program-parkour.html' },
+            { name: 'Strength / Conditioning', icon: 'fa-dumbbell', tag: 'Fitness', desc: 'Functional strength, weight loss, and body shaping for athletic performance.', link: 'program-strength.html' },
+            { name: 'Calisthenics', icon: 'fa-child', tag: 'Fitness', desc: 'Build strength, control and mobility using your own bodyweight.', link: 'program-calisthenics.html' },
+            { name: 'Boxing', icon: 'fa-hand-fist', tag: 'Striking', desc: 'Footwork, punch combinations, defence and bag work with a certified boxing coach.', link: 'program-boxing.html' },
+            { name: 'Personal Training (1-on-1)', icon: 'fa-user-check', tag: '1-on-1', desc: 'A plan built around your goals, with a coach focused only on you.', link: 'program-personal-training.html' },
+            { name: 'Kids / Youth Self-Defense', icon: 'fa-shield-halved', tag: 'Youth', desc: 'Confidence, discipline, coordination and self-defense in a safe, structured class.', link: 'program-kids.html' }
         ];
 
         const grid = document.getElementById('programs-grid');
@@ -802,6 +801,8 @@
         programs.forEach((p, i) => {
             const accent = i % 2 === 0 ? 'text-accentRed bg-accentRed/10 border-accentRed/30' : 'text-accentGold bg-accentGold/10 border-accentGold/30';
             const msg = `Hello Wolf MMA Fitness! I am interested in ${p.name}. Please share the details.`;
+            
+            // UPDATED CARD HTML WITH "VIEW DETAILS" BUTTON
             grid.insertAdjacentHTML('beforeend', `
                 <div class="bg-cardBg rounded-2xl border border-gray-800 p-5 sm:p-6 hover:border-accentGold transition-all duration-300 group flex flex-col justify-between shadow-xl">
                     <div>
@@ -812,12 +813,16 @@
                         <h3 class="text-lg sm:text-xl font-extrabold uppercase mt-1 group-hover:text-accentGold transition-colors">${p.name}</h3>
                         <p class="text-gray-400 text-xs sm:text-sm mt-2 leading-relaxed">${p.desc}</p>
                     </div>
-                    <div class="pt-4 mt-4 border-t border-gray-800">
-                        <a href="${waLink(msg)}" target="_blank" rel="noopener" class="text-[10px] sm:text-xs font-bold uppercase text-white hover:text-accentGold flex items-center space-x-2">
-                            <i class="fa-brands fa-whatsapp text-green-500 text-sm sm:text-base"></i><span>Enquire Now</span> <i class="fa-solid fa-arrow-right ml-auto"></i>
+                    <div class="pt-4 mt-4 border-t border-gray-800 flex justify-between items-center">
+                        <a href="${p.link}" class="text-[10px] sm:text-xs font-bold uppercase text-accentGold hover:text-white transition-colors">
+                            View Details <i class="fa-solid fa-arrow-right ml-1"></i>
+                        </a>
+                        <a href="${waLink(msg)}" target="_blank" rel="noopener" class="text-[10px] sm:text-xs font-bold uppercase text-gray-400 hover:text-green-500 transition-colors">
+                            <i class="fa-brands fa-whatsapp text-sm"></i> Enquire
                         </a>
                     </div>
                 </div>`);
+                
             const opt = document.createElement('option');
             opt.value = p.name;
             opt.textContent = p.name;

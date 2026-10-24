@@ -352,8 +352,8 @@
                         <div>
                             <p class="text-lg sm:text-xl font-black text-white">The Transformation</p>
                             <p class="text-[10px] sm:text-xs text-gray-400 mt-1">1 Month</p>
-                            <p class="text-2xl sm:text-3xl font-black text-accentRed mt-2">₹15,000</p>
-                            <p class="text-[10px] sm:text-xs text-gray-500">Couple: ₹20,000</p>
+                            <p class="text-2xl sm:text-3xl font-black text-accentRed mt-2">₹12,000</p>
+                            <p class="text-[10px] sm:text-xs text-gray-500">Couple: ₹16,000</p>
                         </div>
                     </div>
 
@@ -361,8 +361,8 @@
                         <div>
                             <p class="text-lg sm:text-xl font-black text-white">The Transformation</p>
                             <p class="text-[10px] sm:text-xs text-gray-400 mt-1">3 Months</p>
-                            <p class="text-2xl sm:text-3xl font-black text-accentRed mt-2">₹35,000</p>
-                            <p class="text-[10px] sm:text-xs text-gray-500">Couple: ₹50,000</p>
+                            <p class="text-2xl sm:text-3xl font-black text-accentRed mt-2">₹30,000</p>
+                            <p class="text-[10px] sm:text-xs text-gray-500">Couple: ₹45,000</p>
                         </div>
                         <div class="text-left sm:text-right w-full sm:w-auto border-t sm:border-t-0 border-gray-800 pt-3 sm:pt-0">
                             <ul class="text-[10px] sm:text-xs text-gray-300 space-y-1">
@@ -781,18 +781,18 @@
         btnSingle.addEventListener('click', () => setPricingMode('single'));
         btnCouple.addEventListener('click', () => setPricingMode('couple'));
 
-        // Programs List (UPDATED WITH LINKS)
+        // Programs List (UPDATED WITH BETTER ICONS)
         const programs = [
-            { name: 'MMA', icon: 'fa-fire', tag: 'Combat Sport', desc: 'Striking, wrestling and submission grappling combined in one complete system.', link: 'program-mma.html' },
-            { name: 'BJJ / Wrestling', icon: 'fa-user-ninja', tag: 'Grappling', desc: 'Leverage, joint locks, takedowns and chokeholds. Learn how technique beats strength.', link: 'program-bjj.html' },
+            { name: 'MMA', icon: 'fa-hand-fist', tag: 'Combat Sport', desc: 'Striking, wrestling and submission grappling combined in one complete system.', link: 'program-mma.html' },
+            { name: 'BJJ / Wrestling', icon: 'fa-people-arrows', tag: 'Grappling', desc: 'Leverage, joint locks, takedowns and chokeholds. Learn how technique beats strength.', link: 'program-bjj.html' },
             { name: 'Kickboxing / Muay Thai', icon: 'fa-bolt', tag: 'Striking', desc: 'Punches, kicks, knees and elbows. Build power, speed and stamina.', link: 'program-kickboxing.html' },
             { name: 'Karate / Kung Fu', icon: 'fa-yin-yang', tag: 'Traditional Art', desc: 'Traditional forms, discipline and technique, taught by expert martial arts masters.', link: 'program-karate.html' },
             { name: 'Gymnastic / Parkour', icon: 'fa-person-running', tag: 'Acrobatics', desc: 'Body control, flips, vaults, and agility training to move freely through any environment.', link: 'program-parkour.html' },
             { name: 'Strength / Conditioning', icon: 'fa-dumbbell', tag: 'Fitness', desc: 'Functional strength, weight loss, and body shaping for athletic performance.', link: 'program-strength.html' },
-            { name: 'Calisthenics', icon: 'fa-child', tag: 'Fitness', desc: 'Build strength, control and mobility using your own bodyweight.', link: 'program-calisthenics.html' },
-            { name: 'Boxing', icon: 'fa-hand-fist', tag: 'Striking', desc: 'Footwork, punch combinations, defence and bag work with a certified boxing coach.', link: 'program-boxing.html' },
+            { name: 'Calisthenics', icon: 'fa-child-reaching', tag: 'Fitness', desc: 'Build strength, control and mobility using your own bodyweight.', link: 'program-calisthenics.html' },
+            { name: 'Boxing', icon: 'fa-hand-back-fist', tag: 'Striking', desc: 'Footwork, punch combinations, defence and bag work with a certified boxing coach.', link: 'program-boxing.html' },
             { name: 'Personal Training (1-on-1)', icon: 'fa-user-check', tag: '1-on-1', desc: 'A plan built around your goals, with a coach focused only on you.', link: 'program-personal-training.html' },
-            { name: 'Kids / Youth Self-Defense', icon: 'fa-shield-halved', tag: 'Youth', desc: 'Confidence, discipline, coordination and self-defense in a safe, structured class.', link: 'program-kids.html' }
+            { name: 'Kids / Youth Self-Defense', icon: 'fa-children', tag: 'Youth', desc: 'Confidence, discipline, coordination and self-defense in a safe, structured class.', link: 'program-kids.html' }
         ];
 
         const grid = document.getElementById('programs-grid');
@@ -802,7 +802,6 @@
             const accent = i % 2 === 0 ? 'text-accentRed bg-accentRed/10 border-accentRed/30' : 'text-accentGold bg-accentGold/10 border-accentGold/30';
             const msg = `Hello Wolf MMA Fitness! I am interested in ${p.name}. Please share the details.`;
             
-            // UPDATED CARD HTML WITH "VIEW DETAILS" BUTTON
             grid.insertAdjacentHTML('beforeend', `
                 <div class="bg-cardBg rounded-2xl border border-gray-800 p-5 sm:p-6 hover:border-accentGold transition-all duration-300 group flex flex-col justify-between shadow-xl">
                     <div>

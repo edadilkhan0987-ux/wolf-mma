@@ -42,7 +42,7 @@
 </head>
 <body class="bg-fightBlack text-white antialiased relative">
 
-    <!-- Floating Social Buttons (Sharp Edges) -->
+    <!-- Floating Social Buttons -->
     <div class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2">
         <a href="https://wa.me/917093772127" target="_blank" rel="noopener" aria-label="WhatsApp"
            class="w-12 h-12 rounded-none bg-fightRed text-white flex items-center justify-center border-2 border-transparent hover:bg-white hover:text-black transition-colors">
@@ -71,7 +71,6 @@
                     <a href="/" class="hover:text-fightRed transition-colors">HOME</a>
                     <a href="#about" class="hover:text-fightRed transition-colors">ABOUT</a>
                     <a href="#programs" class="hover:text-fightRed transition-colors">PROGRAMS</a>
-                    <a href="#online" class="text-fightRed transition-colors">ONLINE</a>
                     <a href="#plans" class="hover:text-fightRed transition-colors">PLANS</a>
                     <a href="#schedule" class="hover:text-fightRed transition-colors">TIMINGS</a>
                     <a href="#trainers" class="hover:text-fightRed transition-colors">COACHES</a>
@@ -96,7 +95,6 @@
             <a href="/" class="block py-2 font-oswald text-xl hover:text-fightRed">HOME</a>
             <a href="#about" class="block py-2 font-oswald text-xl hover:text-fightRed">ABOUT</a>
             <a href="#programs" class="block py-2 font-oswald text-xl hover:text-fightRed">PROGRAMS</a>
-            <a href="#online" class="block py-2 font-oswald text-xl text-fightRed">ONLINE TRAINING</a>
             <a href="#plans" class="block py-2 font-oswald text-xl hover:text-fightRed">PLANS</a>
             <a href="#schedule" class="block py-2 font-oswald text-xl hover:text-fightRed">TIMINGS</a>
             <a href="#trainers" class="block py-2 font-oswald text-xl hover:text-fightRed">COACHES</a>
@@ -104,35 +102,38 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Centered Logo) -->
     <section id="home" class="min-h-screen flex items-center pt-20 relative border-b-4 border-fightRed">
         <div class="absolute inset-0 z-0">
-            <!-- Removed grayscale from the video -->
             <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
                 <source src="boxing.mp4" type="video/mp4">
             </video>
         </div>
         
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative z-10">
-            <div class="max-w-4xl">
-                <div class="inline-block bg-white text-black font-oswald font-bold px-4 py-1 mb-6 tracking-widest text-sm">
-                    BANJARA HILLS · HYDERABAD
-                </div>
-                <h1 class="text-6xl sm:text-7xl lg:text-9xl font-bold leading-none tracking-tighter mb-4">
-                    UNLEASH YOUR<br>
-                    <span class="text-fightRed">INNER BEAST</span>
-                </h1>
-                <p class="text-lg sm:text-2xl font-mono text-gray-300 max-w-2xl mb-10 border-l-4 border-fightRed pl-4">
-                    MMA, Kickboxing, BJJ, Calisthenics, Karate & more. No egos. Just hard work and results.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="bg-fightRed text-white border-2 border-fightRed font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
-                        CLAIM FREE TRIAL
-                    </a>
-                    <a href="#programs" class="bg-transparent text-white border-2 border-white font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
-                        VIEW PROGRAMS
-                    </a>
-                </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative z-10 flex flex-col items-center justify-center text-center">
+            
+            <!-- CENTERED LOGO -->
+            <div class="w-40 h-40 sm:w-56 sm:h-56 mb-8 bg-black border-4 border-fightRed p-2 shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
+                <img src="logo.jpeg" alt="Wolf MMA Logo" class="w-full h-full object-cover">
+            </div>
+
+            <div class="inline-block bg-white text-black font-oswald font-bold px-4 py-1 mb-6 tracking-widest text-sm">
+                BANJARA HILLS · HYDERABAD
+            </div>
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold leading-none tracking-tighter mb-6">
+                UNLEASH YOUR<br>
+                <span class="text-fightRed">INNER BEAST</span>
+            </h1>
+            <p class="text-base sm:text-xl font-mono text-gray-300 max-w-2xl mx-auto mb-10">
+                MMA, Kickboxing, BJJ, Calisthenics, Karate & more. No egos. Just hard work and results.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-fightRed text-white border-2 border-fightRed font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
+                    CLAIM FREE TRIAL
+                </a>
+                <a href="#programs" class="bg-transparent text-white border-2 border-white font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
+                    VIEW PROGRAMS
+                </a>
             </div>
         </div>
     </section>
@@ -169,7 +170,6 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <!-- Removed grayscale from images -->
                     <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=600&q=80" alt="Gym" class="w-full h-64 object-cover border-2 border-black">
                     <img src="https://images.unsplash.com/photo-1550259979-ed79b48d2a30?auto=format&fit=crop&w=600&q=80" alt="Training" class="w-full h-64 object-cover border-2 border-black mt-8">
                 </div>
@@ -182,19 +182,6 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">TRAINING DISCIPLINES</h2>
             <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-fightGray"></div>
-        </div>
-    </section>
-
-    <!-- Online Training Section -->
-    <section id="online" class="py-20 bg-fightRed text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-6">ONLINE TRAINING</h2>
-            <p class="text-lg font-mono max-w-2xl mx-auto mb-8 font-bold">
-                Can't make it to the gym? Get personalized coaching, custom diet plans, and live virtual classes from our expert coaches, anywhere in the world.
-            </p>
-            <a href="https://wa.me/917093772127?text=Hello!%20I%20am%20interested%20in%20Online%20Training." target="_blank" class="inline-block bg-black text-white font-oswald font-bold text-xl px-8 py-4 tracking-widest border-2 border-black hover:bg-white hover:text-black transition-colors">
-                START ONLINE TRAINING
-            </a>
         </div>
     </section>
 
@@ -258,7 +245,7 @@
                 </div>
             </div>
 
-            <!-- Online Training -->
+            <!-- Online Training Packages -->
             <div class="mb-16">
                 <h3 class="text-2xl font-bold tracking-widest text-fightRed mb-6">ONLINE TRAINING PACKAGES</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -355,7 +342,6 @@
                     <div class="absolute inset-0 bg-gray-200 flex items-center justify-center text-gray-400">
                         <i class="fa-solid fa-user text-6xl"></i>
                     </div>
-                    <!-- Removed grayscale -->
                     <img src="coach-amir.png" alt="Mohd Amir" class="absolute inset-0 w-full h-full object-cover transition-all duration-300" onerror="this.style.display='none'">
                 </div>
                 <div class="p-8 md:w-2/3">
@@ -536,7 +522,7 @@
         btnSingle.addEventListener('click', () => setPricingMode('single'));
         btnCouple.addEventListener('click', () => setPricingMode('couple'));
 
-        // Programs List
+        // Programs List (Online Training Included)
         const programs = [
             { name: 'MMA', icon: 'fa-hand-fist', desc: 'Striking, wrestling and submission grappling combined.', link: 'program-mma.html' },
             { name: 'BJJ / Wrestling', icon: 'fa-people-arrows', desc: 'Leverage, joint locks, takedowns and chokeholds.', link: 'program-bjj.html' },
@@ -547,7 +533,8 @@
             { name: 'Calisthenics', icon: 'fa-child-reaching', desc: 'Build strength using your own bodyweight.', link: 'program-calisthenics.html' },
             { name: 'Boxing', icon: 'fa-hand-back-fist', desc: 'Footwork, combinations, defense and bag work.', link: 'program-boxing.html' },
             { name: 'Personal Training', icon: 'fa-user-check', desc: 'A plan built around your goals, 1-on-1.', link: 'program-personal-training.html' },
-            { name: 'Kids Self-Defense', icon: 'fa-children', desc: 'Confidence, discipline, and self-defense.', link: 'program-kids.html' }
+            { name: 'Kids Self-Defense', icon: 'fa-children', desc: 'Confidence, discipline, and self-defense.', link: 'program-kids.html' },
+            { name: 'Online Training', icon: 'fa-laptop', desc: 'Train from home with live virtual classes and personalized coaching.', link: '#plans' }
         ];
 
         const grid = document.getElementById('programs-grid');

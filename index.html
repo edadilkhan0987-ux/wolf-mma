@@ -38,6 +38,23 @@
         /* Brutalist hover effect for buttons */
         .fight-btn { transition: all 0.1s ease; }
         .fight-btn:hover { background-color: #ffffff; color: #000000; border-color: #ffffff; }
+
+        /* Continuous Marquee Animation for Gallery */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Moves exactly half the width */
+        }
+        
+        .animate-marquee {
+            display: flex;
+            width: max-content;
+            animation: scroll 40s linear infinite;
+        }
+
+        /* Pauses the scrolling when someone hovers over an image */
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 <body class="bg-fightBlack text-white antialiased relative">
@@ -102,7 +119,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section (Centered Logo) -->
+    <!-- Hero Section -->
     <section id="home" class="min-h-screen flex items-center pt-20 relative border-b-4 border-fightRed">
         <div class="absolute inset-0 z-0">
             <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
@@ -138,8 +155,8 @@
         </div>
     </section>
 
-    <!-- About Section (Includes Head Coach & Floating Gallery) -->
-    <section id="about" class="py-20 bg-white text-black relative">
+    <!-- About Section (Includes Head Coach & Moving Gallery) -->
+    <section id="about" class="py-20 bg-white text-black relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Top Part: Text & Head Coach -->
@@ -189,64 +206,41 @@
 
             </div>
 
-            <!-- Bottom Part: Floating Photo Gallery (10 Images) -->
+            <!-- Bottom Part: Moving Photo Gallery -->
             <div class="mt-24 pt-16 border-t-4 border-black">
                 <h3 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-12 text-center">
                     INSIDE THE <span class="text-fightRed">GYM</span>
                 </h3>
                 
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-10">
-                    
-                    <!-- Gym 1 -->
-                    <div class="relative group">
-                        <img src="gym-1.png" alt="Gym 1" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform rotate-3 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-                    
-                    <!-- Gym 2 -->
-                    <div class="relative group">
-                        <img src="gym-2.png" alt="Gym 2" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform -rotate-2 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-                    
-                    <!-- Gym 3 -->
-                    <div class="relative group">
-                        <img src="gym-3.png" alt="Gym 3" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform rotate-1 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-                    
-                    <!-- Gym 4 -->
-                    <div class="relative group">
-                        <img src="gym-4.png" alt="Gym 4" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform -rotate-3 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-                    
-                    <!-- Gym 5 -->
-                    <div class="relative group">
-                        <img src="gym-5.png" alt="Gym 5" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform rotate-2 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
+                <!-- The Moving Track -->
+                <div class="relative w-full overflow-hidden py-4">
+                    <div class="animate-marquee gap-6 sm:gap-10 px-3">
+                        
+                        <!-- FIRST SET OF IMAGES (1-10) -->
+                        <img src="gym-1.png" alt="Gym 1" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-2.png" alt="Gym 2" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-3.png" alt="Gym 3" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-4.png" alt="Gym 4" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-5.png" alt="Gym 5" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-6.png" alt="Gym 6" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-7.png" alt="Gym 7" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-8.png" alt="Gym 8" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-9.png" alt="Gym 9" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-10.png" alt="Gym 10" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
 
-                    <!-- Gym 6 -->
-                    <div class="relative group">
-                        <img src="gym-6.png" alt="Gym 6" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform -rotate-1 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
+                        <!-- SECOND SET OF IMAGES (Duplicated 1-10 for seamless looping) -->
+                        <img src="gym-1.png" alt="Gym 1" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-2.png" alt="Gym 2" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-3.png" alt="Gym 3" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-4.png" alt="Gym 4" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-5.png" alt="Gym 5" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-6.png" alt="Gym 6" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-7.png" alt="Gym 7" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-8.png" alt="Gym 8" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-9.png" alt="Gym 9" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-10.png" alt="Gym 10" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        
                     </div>
-
-                    <!-- Gym 7 -->
-                    <div class="relative group">
-                        <img src="gym-7.png" alt="Gym 7" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform rotate-3 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-
-                    <!-- Gym 8 -->
-                    <div class="relative group">
-                        <img src="gym-8.png" alt="Gym 8" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform -rotate-2 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-
-                    <!-- Gym 9 -->
-                    <div class="relative group">
-                        <img src="gym-9.png" alt="Gym 9" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform rotate-1 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-
-                    <!-- Gym 10 -->
-                    <div class="relative group">
-                        <img src="gym-10.png" alt="Gym 10" class="w-full h-40 sm:h-48 object-cover border-4 border-black shadow-[6px_6px_0px_0px_rgba(230,0,0,1)] transform -rotate-3 transition-all duration-300 ease-in-out group-hover:rotate-0 group-hover:scale-125 group-hover:z-20 group-hover:shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
-                    </div>
-
                 </div>
             </div>
 

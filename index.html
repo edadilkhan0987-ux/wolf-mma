@@ -1,978 +1,732 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Peculiar Atelier — Unusual by intent</title>
-    <meta name="description" content="Peculiar Atelier. Unusual by intent. Tug the cloth, I dare you.">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOLF MMA | Combat & Fitness Academy | Banjara Hills</title>
+    <meta name="description" content="Hardcore MMA, Kickboxing, BJJ, Boxing, and Strength Training in Banjara Hills, Hyderabad. No egos, just results. Book a free trial.">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://d2ol7oe51mr4n9.cloudfront.net" crossorigin>
+    <!-- Favicon -->
+    <link rel="icon" type="image/jpeg" href="logo.jpeg">
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fightBlack: '#0a0a0a',
+                        fightDark: '#121212',
+                        fightRed: '#e60000',
+                        fightGray: '#1f1f1f',
+                    },
+                    fontFamily: {
+                        oswald: ['Oswald', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Aggressive, condensed font for headings -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root {
-            --paper: #e3e4e9;
-            --paper-edge: #cfd1d9;
-            --ink: #000000;
-            --ink-soft: rgba(0, 0, 0, 0.5);
-            --violet: #5b07fb;
-            --violet-deep: #4a00d6;
-            --white: #ffffff;
-            --gutter: clamp(20px, 3.2vw, 46px);
-            --display: clamp(44px, min(7.65vw, 13.6vh), 168px);
-        }
+        body { font-family: 'Roboto Mono', monospace; background-color: #0a0a0a; color: #ffffff; overflow-x: hidden; }
+        h1, h2, h3, h4, .font-oswald { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+        
+        /* Brutalist hover effect for buttons */
+        .fight-btn { transition: all 0.1s ease; }
+        .fight-btn:hover { background-color: #ffffff; color: #000000; border-color: #ffffff; }
 
-        * {
-            box-sizing: border-box;
+        /* Continuous Marquee Animation for Gallery */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); } /* Moves exactly half the width */
         }
-
-        body {
-            margin: 0;
-            background-color: var(--paper);
-            font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-        .hero {
-            position: relative;
-            height: 100vh;
-            height: 100svh;
-            min-height: 480px;
-            overflow: hidden;
-            isolation: isolate;
-            background: radial-gradient(120% 95% at 58% 38%, #e8e9ed 0%, var(--paper) 46%, var(--paper-edge) 100%);
-        }
-
-        .hero__cloth {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            display: block;
-            z-index: 0;
-            touch-action: pan-y;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
-        .hero__cloth.is-over { cursor: grab; }
-        .hero__cloth.is-held { cursor: grabbing; }
-        .hero__cloth:focus-visible {
-            outline: 2px solid var(--violet);
-            outline-offset: -6px;
-        }
-
-        .hero__still {
-            position: absolute;
-            left: 40%;
-            top: 48.5%;
-            width: min(64vw, 84vh);
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            transform: translate(-50%, -50%) rotate(5deg);
-            box-shadow: -18px 40px 70px rgba(20, 20, 40, 0.22);
-            display: none;
-        }
-
-        .hero.no-cloth .hero__cloth {
-            display: none;
-        }
-        .hero.no-cloth .hero__still {
-            display: block;
-        }
-
-        .nav {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 2;
+        
+        .animate-marquee {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px var(--gutter) 0;
-            pointer-events: none;
-        }
-        .nav > * {
-            pointer-events: auto;
+            width: max-content;
+            animation: scroll 40s linear infinite;
         }
 
-        .nav__logo {
-            font-size: 19px;
-            font-weight: 400;
-            letter-spacing: -0.045em;
-            line-height: 36px;
-            color: var(--ink);
-            text-decoration: none;
-        }
-        .nav__logo:focus-visible {
-            outline: 2px solid var(--violet);
-            outline-offset: 3px;
-        }
-
-        .nav__actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .pill {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            height: 36px;
-            padding: 0 18px;
-            border: none;
-            border-radius: 999px;
-            font-size: 16px;
-            font-weight: 500;
-            letter-spacing: -0.045em;
-            line-height: 1;
-            color: var(--white);
-            text-decoration: none;
-            cursor: pointer;
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.2s;
-        }
-        .pill:hover {
-            transform: translateY(-1px);
-        }
-        .pill:active {
-            transform: scale(0.98);
-        }
-        .pill:focus-visible {
-            outline: 2px solid var(--violet);
-            outline-offset: 3px;
-        }
-
-        .pill--menu {
-            background-color: var(--ink);
-            padding-left: 16px;
-        }
-        .pill--menu:hover {
-            background-color: #1b1b1f;
-        }
-
-        .pill--start {
-            background-color: var(--violet);
-        }
-        .pill--start:hover {
-            background-color: var(--violet-deep);
-        }
-        .pill--start:focus-visible {
-            outline-color: var(--ink);
-        }
-
-        .burger {
-            display: grid;
-            gap: 4px;
-            width: 24px;
-        }
-        .burger i {
-            display: block;
-            height: 1.5px;
-            background-color: var(--white);
-            border-radius: 1px;
-            transition: transform 0.25s;
-        }
-        .pill--menu:hover .burger i:first-child {
-            transform: translateX(-2px);
-        }
-        .pill--menu:hover .burger i:last-child {
-            transform: translateX(2px);
-        }
-
-        .hero__title {
-            position: absolute;
-            z-index: 1;
-            left: 66.9%;
-            top: 48.4%;
-            transform: translateY(-50%);
-            margin: 0;
-            font-size: var(--display);
-            font-weight: 500;
-            line-height: 0.99;
-            letter-spacing: -0.06em;
-            white-space: nowrap;
-            pointer-events: none;
-            user-select: none;
-            color: var(--ink);
-        }
-        .hero__title span {
-            display: block;
-            animation: rise 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
-        }
-        .hero__title .soft {
-            color: var(--ink-soft);
-            animation-delay: 0.08s;
-        }
-
-        @keyframes rise {
-            from {
-                opacity: 0;
-                transform: translateY(18px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 1099px), (max-aspect-ratio: 5/4) {
-            :root {
-                --display: clamp(44px, min(12.4vw, 11vh), 120px);
-            }
-            .hero__title {
-                left: var(--gutter);
-                top: auto;
-                bottom: clamp(20px, 4vh, 44px);
-                transform: none;
-            }
-            .hero__still {
-                left: 50%;
-                top: 44%;
-                width: min(78vw, 60vh);
-            }
-        }
-
-        @media (max-width: 520px) {
-            .pill--start {
-                display: none;
-            }
-            .nav__logo {
-                font-size: 18px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .hero__title span, .pill, .burger i {
-                animation: none !important;
-                transition: none !important;
-            }
+        /* Pauses the scrolling when someone hovers over an image */
+        .animate-marquee:hover {
+            animation-play-state: paused;
         }
     </style>
 </head>
-<body>
+<body class="bg-fightBlack text-white antialiased relative">
 
-<section class="hero" id="hero" aria-label="Peculiar Atelier">
-    <canvas class="hero__cloth" id="cloth" role="img" tabindex="-1" aria-label="A violet holographic cloth showing a chrome octopus beneath the words Strange by design. Grab it then tug it around."></canvas>
-    
-    <img class="hero__still" id="still" alt="" decoding="async" src="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/9212999e-7a4a-4f70-bc34-e4e1c4533b81.jpg">
+    <!-- Floating Social Buttons -->
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2">
+        <a href="https://wa.me/917093772127" target="_blank" rel="noopener" aria-label="WhatsApp"
+           class="w-12 h-12 rounded-none bg-fightRed text-white flex items-center justify-center border-2 border-transparent hover:bg-white hover:text-black transition-colors">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+        <a href="https://www.instagram.com/wolf_mma_fitness/" target="_blank" rel="noopener" aria-label="Instagram"
+           class="w-12 h-12 rounded-none bg-white text-black flex items-center justify-center border-2 border-white hover:bg-black hover:text-white transition-colors">
+            <i class="fa-brands fa-instagram text-2xl"></i>
+        </a>
+    </div>
 
-    <header class="nav">
-        <a class="nav__logo" href="#hero">Peculiar Atelier</a>
-        <div class="nav__actions">
-            <button class="pill pill--menu" type="button" aria-haspopup="true" aria-expanded="false">
-                <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>More
-            </button>
-            <a class="pill pill--start" href="#start">Start a brief</a>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-fightBlack border-b-4 border-fightRed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="/" class="flex items-center space-x-4 group">
+                    <div class="w-12 h-12 shrink-0 bg-white p-1">
+                        <img src="logo.jpeg" alt="Logo" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <span class="text-2xl sm:text-3xl font-oswald font-bold tracking-widest text-white leading-none">WOLF MMA</span>
+                    </div>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-6 text-sm font-oswald tracking-widest">
+                    <a href="/" class="hover:text-fightRed transition-colors">HOME</a>
+                    <a href="#about" class="hover:text-fightRed transition-colors">ABOUT</a>
+                    <a href="#programs" class="hover:text-fightRed transition-colors">PROGRAMS</a>
+                    <a href="#plans" class="hover:text-fightRed transition-colors">PLANS</a>
+                    <a href="#schedule" class="hover:text-fightRed transition-colors">TIMINGS</a>
+                    <a href="#trainers" class="hover:text-fightRed transition-colors">COACHES</a>
+                </div>
+
+                <div class="hidden lg:block">
+                    <a href="#contact" class="bg-fightRed text-white border-2 border-fightRed font-oswald font-bold px-6 py-2 rounded-none tracking-widest fight-btn">
+                        FREE TRIAL
+                    </a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </header>
 
-    <h1 class="hero__title"><span>Grab me</span><span class="soft">I dare you</span></h1>
-</section>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-fightDark border-b-2 border-white px-4 pt-2 pb-6 space-y-4">
+            <a href="/" class="block py-2 font-oswald text-xl hover:text-fightRed">HOME</a>
+            <a href="#about" class="block py-2 font-oswald text-xl hover:text-fightRed">ABOUT</a>
+            <a href="#programs" class="block py-2 font-oswald text-xl hover:text-fightRed">PROGRAMS</a>
+            <a href="#plans" class="block py-2 font-oswald text-xl hover:text-fightRed">PLANS</a>
+            <a href="#schedule" class="block py-2 font-oswald text-xl hover:text-fightRed">TIMINGS</a>
+            <a href="#trainers" class="block py-2 font-oswald text-xl hover:text-fightRed">COACHES</a>
+            <a href="#contact" class="block py-2 font-oswald text-xl hover:text-fightRed">CONTACT</a>
+        </div>
+    </nav>
 
-<script>
-    (() => {
-        const hero = document.getElementById('hero');
-        const canvas = document.getElementById('cloth');
-        const still = document.getElementById('still');
-        const imgUrl = "https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/9212999e-7a4a-4f70-bc34-e4e1c4533b81.jpg";
-
-        let gl;
-        try {
-            gl = canvas.getContext('webgl', { alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: 'high-performance' }) || 
-                 canvas.getContext('experimental-webgl', { alpha: true, antialias: true, premultipliedAlpha: true, powerPreference: 'high-performance' });
-        } catch(e) {}
-
-        if (!gl) {
-            hero.classList.add('no-cloth');
-            return;
-        }
-
-        // --- SHADERS ---
-        const vsSource = `
-            attribute vec3 aPos;
-            attribute vec3 aNormal;
-            attribute vec2 aUv;
-            uniform vec2 uResolution;
-            varying vec3 vNormal;
-            varying vec2 vUv;
-            varying vec3 vViewPos;
-            
-            void main() {
-                vUv = aUv;
-                vNormal = aNormal;
-                vViewPos = aPos;
-                
-                float aspectRatio = uResolution.x / uResolution.y;
-                float cx = 0.402;
-                float cy = 0.485;
-                float CH = 0.90;
-                float aspect = 1.12;
-                float CW = CH * aspect;
-                float zoom = min(1.0, 0.58 * aspectRatio / (CW * 1.12));
-                
-                vec2 screen = aPos.xy * zoom;
-                float x = 2.0 * (cx + screen.x / aspectRatio) - 1.0;
-                float y = 1.0 - 2.0 * (cy - screen.y);
-                float z = -aPos.z * 0.5;
-                gl_Position = vec4(x, y, z, 1.0);
-            }
-        `;
-
-        const fsSource = `
-            precision highp float;
-            varying vec3 vNormal;
-            varying vec2 vUv;
-            varying vec3 vViewPos;
-            uniform sampler2D uTexture;
-            uniform float uHasTexture;
-            
-            #define PI 3.14159265359
-            
-            float ridge(float x) {
-                return sqrt(sin(x)*sin(x) + 0.03) - 0.64;
-            }
-            
-            float box(vec3 dir, vec3 centre, vec2 halfSize, float soft) {
-                vec3 d = dir - centre;
-                vec2 p = abs(d.xy) - halfSize;
-                float f = max(p.x, p.y);
-                return 1.0 - smoothstep(-soft, soft, f);
-            }
-            
-            vec3 rainbow(float p) {
-                return clamp(vec3(0.74, 0.58, 0.96) + vec3(0.26, 0.24, 0.10) * cos(2.0 * PI * (p + vec3(0.0, 0.28, 0.62))), 0.0, 1.0);
-            }
-            
-            void main() {
-                vec3 n = normalize(vNormal);
-                bool back = n.z < 0.0;
-                if (back) n = -n;
-                
-                float CAM = 4.0; // Approx
-                vec3 V = normalize(vec3(0.0, 0.0, CAM) - vViewPos);
-                vec3 Rf = reflect(-V, n);
-                vec3 KEY = normalize(vec3(-0.42, 0.45, 0.79));
-                float nv = clamp(dot(n, V), 0.0, 1.0);
-                float nl = max(dot(n, KEY), 0.0);
-                
-                vec3 print = vec3(0.10, 0.02, 0.32);
-                if (uHasTexture > 0.5) {
-                    print = pow(texture2D(uTexture, vUv).rgb, vec3(2.2));
-                }
-                
-                float shade = 0.46 + 0.68 * nl + 0.08 * n.y;
-                float key = pow(max(dot(Rf, KEY), 0.0), 26.0);
-                
-                float strip = box(Rf, normalize(vec3(0.08, 0.93, 0.36)), vec2(1.1, 0.07), 0.22);
-                float side = box(Rf, normalize(vec3(0.86, 0.12, 0.50)), vec2(0.06, 0.85), 0.20);
-                float fill = box(Rf, KEY, vec2(0.42, 0.30), 0.35);
-                
-                float phase = 3.0 * (0.85 * dot(n.xy, vec2(0.6, 0.8)) + 0.75 * (1.0 - nv) + 0.3 * dot(Rf.xy, vec2(-0.8, 0.6))) + 0.4 * sin(5.0 * vUv.x + 7.0 * vUv.y);
-                
-                vec3 holo = mix(vec3(1.0), rainbow(phase)*rainbow(phase), 0.8);
-                float lum = dot(print, vec3(0.299, 0.587, 0.114));
-                float gloss = mix(1.0, 0.45, smoothstep(0.55, 0.9, lum));
-                
-                vec3 spec = holo * gloss * mix(vec3(1.0), print * 2.4 + 0.08, 0.65) * (0.34 * key + 0.11 * strip + 0.07 * side + 0.02 * fill);
-                
-                vec3 colour = print * shade + spec + holo * print * 0.6 * pow(1.0 - nv, 3.0);
-                
-                if (back) {
-                    vec3 foil = vec3(0.30, 0.22, 0.52) * (0.35 + 0.9 * nl) + spec * 1.3;
-                    colour = mix(foil, print * shade, 0.38);
-                }
-                
-                colour = min(colour, vec3(0.8)) + 0.2 * (1.0 - exp(-max(colour - 0.8, 0.0) / 0.2));
-                colour = pow(colour, vec3(1.0 / 2.2));
-                
-                gl_FragColor = vec4(colour, 1.0);
-            }
-        `;
-
-        function createShader(gl, type, source) {
-            const shader = gl.createShader(type);
-            gl.shaderSource(shader, source);
-            gl.compileShader(shader);
-            if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-                console.error(gl.getShaderInfoLog(shader));
-                return null;
-            }
-            return shader;
-        }
-
-        const vs = createShader(gl, gl.VERTEX_SHADER, vsSource);
-        const fs = createShader(gl, gl.FRAGMENT_SHADER, fsSource);
-        if (!vs || !fs) {
-            hero.classList.add('no-cloth');
-            return;
-        }
-
-        const program = gl.createProgram();
-        gl.attachShader(program, vs);
-        gl.attachShader(program, fs);
-        gl.linkProgram(program);
-        if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-            hero.classList.add('no-cloth');
-            return;
-        }
-        gl.useProgram(program);
-
-        const posLoc = gl.getAttribLocation(program, "aPos");
-        const normLoc = gl.getAttribLocation(program, "aNormal");
-        const uvLoc = gl.getAttribLocation(program, "aUv");
-        const resLoc = gl.getUniformLocation(program, "uResolution");
-        const texLoc = gl.getUniformLocation(program, "uTexture");
-        const hasTexLoc = gl.getUniformLocation(program, "uHasTexture");
-
-        // --- SIMULATION SETTINGS ---
-        const COLS = 46;
-        const ROWS = 42;
-        const SIZE = 0.90;
-        const ASPECT = 1.12;
-        const CW = SIZE * ASPECT;
-        const CH = SIZE;
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center pt-20 relative border-b-4 border-fightRed">
+        <div class="absolute inset-0 z-0">
+            <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
+                <source src="boxing.mp4" type="video/mp4">
+            </video>
+        </div>
         
-        const NUM_POINTS = COLS * ROWS;
-        const points = [];
-        const prevPoints = [];
-        const pins = [0, COLS - 1]; // Top left and top right
-        
-        const restZ = [];
-        const constraints = [];
-        
-        const crumple = 0.55;
-        
-        // Initialize flat points
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
-                const u = c / (COLS - 1);
-                const v = r / (ROWS - 1);
-                const x = (u - 0.5) * CW;
-                const y = (v - 0.5) * CH;
-                
-                // Crease math
-                const z = crumple * 0.045 * CH * (
-                    ridge(2.7*u + 2.9*v + 0.7) + 
-                    0.8 * ridge(-2.6*u + 3.3*v + 2.1) + 
-                    0.5 * Math.sin(4.9*u - 1.4*v + 2.2) + 
-                    0.55 * ridge(1.1*u + 6.4*v + 1.3) + 
-                    0.4 * ridge(8.3*u + 3.9*v + 0.2) + 
-                    0.3 * ridge(-5.7*u + 9.1*v + 1.6)
-                );
-                
-                restZ.push(z);
-                points.push({ x: x, y: y, z: z, u, v, px: x, py: y, pz: z });
-                prevPoints.push({ x: x, y: y, z: z });
-            }
-        }
-
-        // Pins
-        const half = 0.5 * CW * 0.98;
-        const top = 0.5 * CH;
-        const roll = 5.5 * Math.PI / 180;
-        
-        const p0 = points[pins[0]];
-        p0.x = -half * Math.cos(roll);
-        p0.y = top + half * Math.sin(roll);
-        p0.z = 0;
-        p0.px = p0.x; p0.py = p0.y; p0.pz = p0.z;
-        
-        const p1 = points[pins[1]];
-        p1.x = half * Math.cos(roll);
-        p1.y = top - half * Math.sin(roll);
-        p1.z = 0;
-        p1.px = p1.x; p1.py = p1.y; p1.pz = p1.z;
-
-        // Rotate whole sheet to match pins initially
-        for (let i = 0; i < points.length; i++) {
-            if (pins.includes(i)) continue;
-            const p = points[i];
-            const spreadX = p.x * 0.98 + (1 - 0.98) * Math.pow(1 - p.v, 2);
-            const dx = spreadX;
-            const dy = p.y - top;
-            p.x = dx * Math.cos(roll) - dy * Math.sin(roll);
-            p.y = dx * Math.sin(roll) + dy * Math.cos(roll) + top;
-            p.px = p.x; p.py = p.y;
-        }
-
-        // Build constraints
-        function addConstraint(i1, i2, stiffness) {
-            const p1 = points[i1], p2 = points[i2];
-            const dx = p1.x - p2.x, dy = p1.y - p2.y, dz = p1.z - p2.z;
-            constraints.push({ i1, i2, rest: Math.sqrt(dx*dx + dy*dy + dz*dz), stiffness });
-        }
-
-        const bend = 0.02 + (0.60 - 0.02) * 0.60;
-
-        for (let r = 0; r < ROWS; r++) {
-            for (let c = 0; c < COLS; c++) {
-                const i = r * COLS + c;
-                if (c < COLS - 1) addConstraint(i, i + 1, 1);
-                if (r < ROWS - 1) addConstraint(i, i + COLS, 1);
-                if (c < COLS - 1 && r < ROWS - 1) {
-                    addConstraint(i, i + COLS + 1, 0.5);
-                    addConstraint(i + 1, i + COLS, 0.5);
-                }
-                if (c < COLS - 2) addConstraint(i, i + 2, bend);
-                if (r < ROWS - 2) addConstraint(i, i + COLS * 2, bend);
-                if (c < COLS - 5) addConstraint(i, i + 5, bend * 0.5);
-                if (r < ROWS - 5) addConstraint(i, i + COLS * 5, bend * 0.5);
-            }
-        }
-
-        // Tethers
-        const tetherRest0 = [];
-        const tetherRest1 = [];
-        const tetherStiff = 0.60;
-        for (let i = 0; i < NUM_POINTS; i++) {
-            if (pins.includes(i)) continue;
-            const p = points[i], p0 = points[pins[0]], p1 = points[pins[1]];
-            const dx0 = p.x - p0.x, dy0 = p.y - p0.y, dz0 = p.z - p0.z;
-            const dx1 = p.x - p1.x, dy1 = p.y - p1.y, dz1 = p.z - p1.z;
-            tetherRest0.push(Math.sqrt(dx0*dx0 + dy0*dy0 + dz0*dz0));
-            tetherRest1.push(Math.sqrt(dx1*dx1 + dy1*dy1 + dz1*dz1));
-        }
-
-        // Pre-warm
-        for (let i = 0; i < 360; i++) {
-            simulate(1/240, 1.0); // high damping
-        }
-
-        // --- MAIN SIMULATION ---
-        function simulate(dt, dampOverride) {
-            const damp = dampOverride !== undefined ? dampOverride : 0.30;
-            const gravity = 2.6;
-            const flutter = 0.35;
-            const time = 0; // For prewarm, no wind
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative z-10 flex flex-col items-center justify-center text-center">
             
-            const dampFactor = Math.exp(-(0.15 + 5.85 * damp) * dt);
-            const wind = 0;
-            
-            // Verlet integration
-            for (let i = 0; i < NUM_POINTS; i++) {
-                if (pins.includes(i)) continue;
-                const p = points[i];
-                const vx = (p.x - p.px) * dampFactor;
-                const vy = (p.y - p.py) * dampFactor;
-                const vz = (p.z - p.pz) * dampFactor;
-                
-                p.px = p.x; p.py = p.y; p.pz = p.z;
-                p.x += vx;
-                p.y += vy - gravity * dt * dt;
-                p.z += vz;
-            }
-            
-            // Constraints
-            for (let c = 0; c < constraints.length; c++) {
-                const con = constraints[c];
-                const p1 = points[con.i1], p2 = points[con.i2];
-                const dx = p1.x - p2.x, dy = p1.y - p2.y, dz = p1.z - p2.z;
-                const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                if (dist === 0) continue;
-                
-                const diff = (dist - con.rest) / dist;
-                const move = diff * con.stiffness;
-                
-                const w1 = pins.includes(con.i1) ? 0 : 0.5;
-                const w2 = pins.includes(con.i2) ? 0 : 0.5;
-                const totalW = w1 + w2;
-                if (totalW === 0) continue;
-                
-                const f1 = w1 / totalW;
-                const f2 = w2 / totalW;
-                
-                p1.x -= dx * move * f1;
-                p1.y -= dy * move * f1;
-                p1.z -= dz * move * f1;
-                
-                p2.x += dx * move * f2;
-                p2.y += dy * move * f2;
-                p2.z += dz * move * f2;
-            }
+            <!-- CENTERED LOGO -->
+            <div class="w-40 h-40 sm:w-56 sm:h-56 mb-8 bg-black border-4 border-fightRed p-2 shadow-[8px_8px_0px_0px_rgba(230,0,0,1)]">
+                <img src="logo.jpeg" alt="Wolf MMA Logo" class="w-full h-full object-cover">
+            </div>
 
-            // Tethers
-            let ti = 0;
-            for (let i = 0; i < NUM_POINTS; i++) {
-                if (pins.includes(i)) continue;
-                const p = points[i];
+            <div class="inline-block bg-white text-black font-oswald font-bold px-4 py-1 mb-6 tracking-widest text-sm">
+                BANJARA HILLS · HYDERABAD
+            </div>
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold leading-none tracking-tighter mb-6">
+                UNLEASH YOUR<br>
+                <span class="text-fightRed">INNER BEAST</span>
+            </h1>
+            <p class="text-base sm:text-xl font-mono text-gray-300 max-w-2xl mx-auto mb-10">
+                MMA, Kickboxing, BJJ, Calisthenics, Karate & more. No egos. Just hard work and results.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#contact" class="bg-fightRed text-white border-2 border-fightRed font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
+                    CLAIM FREE TRIAL
+                </a>
+                <a href="#programs" class="bg-transparent text-white border-2 border-white font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
+                    VIEW PROGRAMS
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Includes Head Coach & Moving Gallery) -->
+    <section id="about" class="py-20 bg-white text-black relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Top Part: Text & Head Coach -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 
-                for (let pinIdx = 0; pinIdx < 2; pinIdx++) {
-                    const pPin = points[pins[pinIdx]];
-                    const dx = p.x - pPin.x, dy = p.y - pPin.y, dz = p.z - pPin.z;
-                    const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                    const maxDist = (pinIdx === 0 ? tetherRest0[ti] : tetherRest1[ti]) * 1.02;
+                <!-- Left Side: Text & Affiliations -->
+                <div>
+                    <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-6">
+                        FORGED IN<br><span class="text-fightRed">DISCIPLINE</span>
+                    </h2>
+                    <p class="text-lg font-mono mb-6 font-bold">
+                        Established in 2025, Wolf MMA Fitness is a hardcore combat sports academy in Banjara Hills. Founded by Mohd Amir, we don't just teach fighting—we build character.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="border-2 border-black p-4">
+                            <h4 class="font-bold text-xl mb-2"><i class="fa-solid fa-dumbbell text-fightRed"></i> PRO EQUIPMENT</h4>
+                            <p class="text-sm font-mono">Heavy bags, mats, and weights built for combat.</p>
+                        </div>
+                        <div class="border-2 border-black p-4">
+                            <h4 class="font-bold text-xl mb-2"><i class="fa-solid fa-award text-fightRed"></i> CHAMPION COACHES</h4>
+                            <p class="text-sm font-mono">Train with national and international fighters.</p>
+                        </div>
+                    </div>
                     
-                    if (dist > maxDist) {
-                        const scale = maxDist / dist;
-                        p.x = pPin.x + dx * scale;
-                        p.y = pPin.y + dy * scale;
-                        p.z = pPin.z + dz * scale;
-                    }
-                }
-                ti++;
-            }
-        }
+                    <div class="mt-8">
+                        <h4 class="font-oswald font-bold text-xl mb-4 border-b-2 border-black pb-2">AFFILIATED WITH:</h4>
+                        <ul class="font-mono text-sm space-y-2 font-bold">
+                            <li><i class="fa-solid fa-caret-right text-fightRed"></i> Iskimos Kickboxing Academy</li>
+                            <li><i class="fa-solid fa-caret-right text-fightRed"></i> Intl Shaolins Ninja Kungfu</li>
+                            <li><i class="fa-solid fa-caret-right text-fightRed"></i> Shotokan Karate & Kickers Martial Arts</li>
+                        </ul>
+                    </div>
+                </div>
 
-        // --- RENDERING ---
-        const numIndices = (COLS - 1) * (ROWS - 1) * 6;
-        const indices = new Uint16Array(numIndices);
-        let idx = 0;
-        for (let r = 0; r < ROWS - 1; r++) {
-            for (let c = 0; c < COLS - 1; c++) {
-                const a = r * COLS + c;
-                const b = a + 1;
-                const cIdx = a + COLS;
-                const d = cIdx + 1;
-                indices[idx++] = a; indices[idx++] = cIdx; indices[idx++] = b;
-                indices[idx++] = b; indices[idx++] = cIdx; indices[idx++] = d;
-            }
-        }
-        const indexBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-        gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+                <!-- Right Side: Head Coach Profile -->
+                <div class="border-4 border-black bg-white shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] flex flex-col">
+                    <div class="relative w-full h-80 border-b-4 border-black overflow-hidden bg-gray-200">
+                        <img src="coach-amir.png" alt="Mohd Amir" class="w-full h-full object-cover" onerror="this.style.display='none'">
+                    </div>
+                    <div class="p-6 sm:p-8">
+                        <h3 class="text-3xl font-bold uppercase mb-1">MOHD AMIR</h3>
+                        <p class="text-fightRed font-mono font-bold mb-4 tracking-widest">HEAD COACH & FOUNDER</p>
+                        <p class="font-mono text-sm mb-6 leading-relaxed">Mastery in MMA, Kickboxing & Fitness Skills. Certified at the highest level with 15+ years of teaching experience.</p>
+                        <a href="tel:+917093772127" class="inline-block bg-black text-white font-oswald font-bold text-lg px-6 py-3 tracking-wider hover:bg-fightRed transition-colors"><i class="fa-solid fa-phone mr-2"></i> +91 70937 72127</a>
+                    </div>
+                </div>
 
-        const posBuffer = gl.createBuffer();
-        const normBuffer = gl.createBuffer();
-        const uvBuffer = gl.createBuffer();
-        
-        const positions = new Float32Array(NUM_POINTS * 3);
-        const normals = new Float32Array(NUM_POINTS * 3);
-        const uvs = new Float32Array(NUM_POINTS * 2);
-        
-        for (let i = 0; i < NUM_POINTS; i++) {
-            uvs[i*2] = points[i].u;
-            uvs[i*2+1] = 1 - points[i].v;
-        }
-        gl.bindBuffer(gl.ARRAY_BUFFER, uvBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, uvs, gl.STATIC_DRAW);
+            </div>
 
-        let texture = gl.createTexture();
-        let hasTex = 0;
-
-        const img = new Image();
-        img.crossOrigin = "anonymous";
-        img.onload = () => {
-            gl.bindTexture(gl.TEXTURE_2D, texture);
-            gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
-            gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-            
-            const ext = gl.getExtension('EXT_texture_filter_anisotropic') || gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
-            if (ext) {
-                gl.texParameterf(gl.TEXTURE_2D, ext.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(ext.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
-            }
-            gl.generateMipmap(gl.TEXTURE_2D);
-            hasTex = 1;
-            render(0);
-        };
-        img.onerror = () => {
-            hero.classList.add('no-cloth');
-        };
-        img.src = imgUrl;
-
-        function resize() {
-            const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            const w = hero.clientWidth;
-            const h = hero.clientHeight;
-            if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
-                canvas.width = w * dpr;
-                canvas.height = h * dpr;
-                gl.viewport(0, 0, canvas.width, canvas.height);
-                if (resLoc) gl.uniform2f(resLoc, w, h);
-            }
-        }
-        window.addEventListener('resize', resize);
-        new ResizeObserver(resize).observe(hero);
-        resize();
-
-        let pointerDown = false;
-        let grabbedPoint = -1;
-        let grabDepth = 0;
-        let grabOffset = { x: 0, y: 0 };
-        const grabRadius = 0.12;
-        const carryRadius = 0.20;
-
-        function getMousePos(e) {
-            const rect = canvas.getBoundingClientRect();
-            const clientX = e.clientX;
-            const clientY = e.clientY;
-            const nx = (clientX - rect.left) / rect.width;
-            const ny = (clientY - rect.top) / rect.height;
-            
-            // approximation
-            const aspectRatio = rect.width / rect.height;
-            const cx = aspectRatio >= 1.25 ? 0.402 : 0.5;
-            const cy = aspectRatio >= 1.25 ? 0.485 : (aspectRatio < 0.75 ? 0.41 : 0.43);
-            const zoom = aspectRatio >= 1.25 ? Math.min(1, 0.58 * aspectRatio / (CW * 1.12)) : Math.min(1, 0.92 * aspectRatio / (CW * 1.12), (aspectRatio < 0.75 ? 0.60 : 0.66) / CH);
-            
-            const x = (nx - cx) * aspectRatio / zoom;
-            const y = (cy - ny) / zoom;
-            return { x, y, nx, ny };
-        }
-
-        canvas.addEventListener('pointerdown', (e) => {
-            const mouse = getMousePos(e);
-            
-            let bestScore = Infinity;
-            let bestIdx = -1;
-            for (let i = 0; i < NUM_POINTS; i++) {
-                const p = points[i];
-                const dx = p.x - mouse.x;
-                const dy = p.y - mouse.y;
-                const dist = Math.sqrt(dx*dx + dy*dy);
-                if (dist < grabRadius) {
-                    const score = dist - 0.08 * (-p.z); // using z as proxy for view depth
-                    if (score < bestScore) {
-                        bestScore = score;
-                        bestIdx = i;
-                    }
-                }
-            }
-            
-            if (bestIdx !== -1) {
-                grabbedPoint = bestIdx;
-                grabDepth = points[bestIdx].z;
-                grabOffset.x = points[bestIdx].x - mouse.x;
-                grabOffset.y = points[bestIdx].y - mouse.y;
-                pointerDown = true;
-                canvas.classList.add('is-held');
-                canvas.setPointerCapture(e.pointerId);
-                e.preventDefault();
-            }
-        });
-
-        canvas.addEventListener('pointermove', (e) => {
-            if (!pointerDown) return;
-            const mouse = getMousePos(e);
-            const targetX = mouse.x + grabOffset.x;
-            const targetY = mouse.y + grabOffset.y;
-            
-            const p = points[grabbedPoint];
-            const dx = targetX - p.x;
-            const dy = targetY - p.y;
-            
-            for (let i = 0; i < NUM_POINTS; i++) {
-                if (pins.includes(i)) continue;
-                const pt = points[i];
-                const d = Math.sqrt(Math.pow(pt.x - p.x, 2) + Math.pow(pt.y - p.y, 2)) / (carryRadius * CH);
-                if (d < 1) {
-                    const weight = Math.pow(1 - d*d, 2);
-                    pt.x += dx * weight;
-                    pt.y += dy * weight;
-                    // Don't update prevPoints to not add velocity
-                }
-            }
-            e.preventDefault();
-        });
-
-        function release(e) {
-            if (pointerDown) {
-                pointerDown = false;
-                grabbedPoint = -1;
-                canvas.classList.remove('is-held');
-                canvas.releasePointerCapture(e.pointerId);
-            }
-        }
-        canvas.addEventListener('pointerup', release);
-        canvas.addEventListener('pointercancel', release);
-        canvas.addEventListener('lostpointercapture', release);
-
-        let isVisible = true;
-        new IntersectionObserver(entries => {
-            isVisible = entries[0].isIntersecting;
-        }).observe(hero);
-
-        let rafId;
-        let lastTime = 0;
-        let simTime = 0;
-
-        function render(now) {
-            if (!isVisible || document.hidden) {
-                rafId = requestAnimationFrame(render);
-                return;
-            }
-            
-            if (lastTime === 0) lastTime = now;
-            const dt = Math.min((now - lastTime) / 1000, 1/30);
-            lastTime = now;
-            
-            if (dt > 0) {
-                simTime += dt;
-                const subSteps = 8;
-                const h = dt / subSteps;
+            <!-- Bottom Part: Moving Photo Gallery -->
+            <div class="mt-24 pt-16 border-t-4 border-black">
+                <h3 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-12 text-center">
+                    INSIDE THE <span class="text-fightRed">GYM</span>
+                </h3>
                 
-                const damp = 0.30;
-                const gravity = 2.6;
-                const flutter = 0.35;
+                <!-- The Moving Track -->
+                <div class="relative w-full overflow-hidden py-4">
+                    <div class="animate-marquee gap-6 sm:gap-10 px-3">
+                        
+                        <!-- FIRST SET OF IMAGES (1-10) -->
+                        <img src="gym-1.png" alt="Gym 1" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-2.png" alt="Gym 2" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-3.png" alt="Gym 3" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-4.png" alt="Gym 4" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-5.png" alt="Gym 5" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-6.png" alt="Gym 6" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-7.png" alt="Gym 7" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-8.png" alt="Gym 8" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-9.png" alt="Gym 9" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-10.png" alt="Gym 10" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+
+                        <!-- SECOND SET OF IMAGES (Duplicated 1-10 for seamless looping) -->
+                        <img src="gym-1.png" alt="Gym 1" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-2.png" alt="Gym 2" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-3.png" alt="Gym 3" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-4.png" alt="Gym 4" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-5.png" alt="Gym 5" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-6.png" alt="Gym 6" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-7.png" alt="Gym 7" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-8.png" alt="Gym 8" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-9.png" alt="Gym 9" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        <img src="gym-10.png" alt="Gym 10" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black shadow-[8px_8px_0px_0px_rgba(230,0,0,1)] shrink-0">
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 bg-fightBlack border-b border-fightGray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">TRAINING DISCIPLINES</h2>
+            <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-fightGray"></div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-20 bg-fightDark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">MEMBERSHIPS & PLANS</h2>
+
+            <!-- Gym Memberships -->
+            <div class="mb-16">
+                <div class="flex flex-col md:flex-row items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold tracking-widest text-fightRed">OFFLINE GYM MEMBERSHIPS</h3>
+                    <div class="flex border-2 border-white mt-4 md:mt-0">
+                        <button id="toggle-single" class="px-6 py-2 font-oswald font-bold bg-white text-black transition-colors">SINGLE</button>
+                        <button id="toggle-couple" class="px-6 py-2 font-oswald font-bold text-white hover:bg-fightGray transition-colors">COUPLE</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- 1 Month -->
+                    <div class="border-2 border-fightGray p-6 flex flex-col justify-between hover:border-white transition-colors bg-fightBlack">
+                        <div>
+                            <p class="font-mono text-gray-500 mb-2">01.</p>
+                            <h4 class="text-2xl font-bold mb-4">ONE MONTH</h4>
+                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹2,999" data-couple="₹4,999">₹2,999</p>
+                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                        </div>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%201%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center border-2 border-white font-oswald font-bold py-2 hover:bg-white hover:text-black transition-colors">ENQUIRE NOW</a>
+                    </div>
+                    <!-- 3 Months -->
+                    <div class="border-2 border-fightGray p-6 flex flex-col justify-between hover:border-white transition-colors bg-fightBlack">
+                        <div>
+                            <p class="font-mono text-gray-500 mb-2">02.</p>
+                            <h4 class="text-2xl font-bold mb-4">THREE MONTHS</h4>
+                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹6,999" data-couple="₹11,999">₹6,999</p>
+                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                        </div>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%203%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center border-2 border-white font-oswald font-bold py-2 hover:bg-white hover:text-black transition-colors">ENQUIRE NOW</a>
+                    </div>
+                    <!-- 6 Months -->
+                    <div class="border-2 border-fightRed p-6 flex flex-col justify-between bg-fightBlack relative">
+                        <div class="absolute top-0 right-0 bg-fightRed text-white font-mono text-xs font-bold px-2 py-1">POPULAR</div>
+                        <div>
+                            <p class="font-mono text-gray-500 mb-2">03.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-fightRed">SIX MONTHS</h4>
+                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹9,999" data-couple="₹17,999">₹9,999</p>
+                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                        </div>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%206%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center bg-fightRed text-white font-oswald font-bold py-2 hover:bg-white hover:text-black transition-colors">ENQUIRE NOW</a>
+                    </div>
+                    <!-- 1 Year -->
+                    <div class="border-2 border-fightGray p-6 flex flex-col justify-between hover:border-white transition-colors bg-fightBlack">
+                        <div>
+                            <p class="font-mono text-gray-500 mb-2">04.</p>
+                            <h4 class="text-2xl font-bold mb-4">ONE YEAR</h4>
+                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹14,999" data-couple="₹25,999">₹14,999</p>
+                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                        </div>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%201%20Year%20Gym%20Membership." target="_blank" class="mt-6 block text-center border-2 border-white font-oswald font-bold py-2 hover:bg-white hover:text-black transition-colors">ENQUIRE NOW</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Online Training Packages -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold tracking-widest text-fightRed mb-6">ONLINE TRAINING PACKAGES</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center">
+                        <h4 class="text-xl font-bold mb-2">MONTHLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹2,500</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(1%20Month)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-white hover:text-black transition-colors">JOIN</a>
+                    </div>
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center">
+                        <h4 class="text-xl font-bold mb-2">QUARTERLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹7,000</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(3%20Months)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-white hover:text-black transition-colors">JOIN</a>
+                    </div>
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center">
+                        <h4 class="text-xl font-bold mb-2">HALF-YEARLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹14,000</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(6%20Months)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-white hover:text-black transition-colors">JOIN</a>
+                    </div>
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center">
+                        <h4 class="text-xl font-bold mb-2">YEARLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹24,000</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(12%20Months)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-white hover:text-black transition-colors">JOIN</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMBAT SPORTS PRICING -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold tracking-widest text-fightRed mb-6">COMBAT SPORTS PRICING</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    
+                    <!-- Boxing -->
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack shadow-xl">
+                        <h4 class="text-2xl font-bold text-white mb-1">BOXING</h4>
+                        <p class="text-xs font-mono text-gray-400 uppercase mb-4">Skill & Conditioning</p>
+                        <div class="space-y-2 font-mono text-sm text-gray-300 border-t border-b border-fightGray py-4 mb-4">
+                            <div class="flex justify-between"><span>1 Month</span> <span class="font-bold text-white">₹4,999</span></div>
+                            <div class="flex justify-between"><span>3 Months</span> <span class="font-bold text-white">₹12,999</span></div>
+                            <div class="flex justify-between"><span>6 Months</span> <span class="font-bold text-white">₹19,999</span></div>
+                        </div>
+                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-calendar mr-1"></i> Schedule: Mon / Wed / Fri</p>
+                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-clock mr-1"></i> AM: 8:00 - 9:00 | PM: 7:00 - 8:00</p>
+                    </div>
+
+                    <!-- Kickboxing & MMA -->
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack shadow-xl">
+                        <h4 class="text-2xl font-bold text-white mb-1">KICKBOXING & MMA</h4>
+                        <p class="text-xs font-mono text-gray-400 uppercase mb-4">Full Combat Integration</p>
+                        <div class="space-y-2 font-mono text-sm text-gray-300 border-t border-b border-fightGray py-4 mb-4">
+                            <div class="flex justify-between"><span>1 Month</span> <span class="font-bold text-white">₹4,999</span></div>
+                            <div class="flex justify-between"><span>3 Months</span> <span class="font-bold text-white">₹12,999</span></div>
+                            <div class="flex justify-between"><span>6 Months</span> <span class="font-bold text-white">₹19,999</span></div>
+                        </div>
+                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-calendar mr-1"></i> Schedule: Mon / Wed / Fri</p>
+                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-clock mr-1"></i> AM: 7:00 - 8:00 | PM: 8:00 - 9:00</p>
+                    </div>
+
+                    <!-- Elite Annual -->
+                    <div class="border-2 border-fightRed p-6 bg-fightBlack shadow-[0_0_15px_rgba(230,0,0,0.3)] relative flex flex-col justify-between">
+                        <div>
+                            <h4 class="text-2xl font-bold text-fightRed mb-1">ELITE ANNUAL PACKAGE</h4>
+                            <p class="text-xs font-mono text-gray-400 mb-4">Best for serious fighters.</p>
+                            <p class="text-4xl font-oswald font-bold text-white mb-2">₹34,999</p>
+                            <p class="text-xs font-mono text-gray-400">Full access to all combat programs for 12 months.</p>
+                        </div>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20am%20interested%20in%20the%20Elite%20Annual%20Combat%20Package." target="_blank" class="mt-6 block text-center bg-fightRed text-white font-oswald font-bold py-3 hover:bg-white hover:text-black transition-colors">GET ELITE ACCESS</a>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Strength Training & Policy -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 
-                const dampFactor = Math.exp(-(0.15 + 5.85 * damp) * h);
-                const gust = 0.6 + 0.4 * Math.sin(0.37 * simTime) * Math.sin(0.23 * simTime + 1.0);
-                let wind = flutter * 2.4 * gust * (gravity / 2.6);
+                <!-- Strength Table -->
+                <div class="border-2 border-fightGray p-6 bg-fightBlack">
+                    <h4 class="text-xl font-bold text-white mb-4"><i class="fa-solid fa-dumbbell text-fightRed mr-2"></i> STRENGTH TRAINING & CONDITIONING</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-xs sm:text-sm text-left font-mono text-gray-300">
+                            <thead class="text-gray-400 border-b border-fightGray">
+                                <tr>
+                                    <th class="py-3 px-2">DURATION</th>
+                                    <th class="py-3 px-2">SINGLE</th>
+                                    <th class="py-3 px-2">COUPLE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-fightGray/50">
+                                    <td class="py-3 px-2 text-white font-bold">1 Month</td>
+                                    <td class="py-3 px-2">₹2,999</td>
+                                    <td class="py-3 px-2">₹4,999</td>
+                                </tr>
+                                <tr class="border-b border-fightGray/50">
+                                    <td class="py-3 px-2 text-white font-bold">3 Months</td>
+                                    <td class="py-3 px-2">₹6,999</td>
+                                    <td class="py-3 px-2">₹11,999</td>
+                                </tr>
+                                <tr class="border-b border-fightGray/50">
+                                    <td class="py-3 px-2 text-white font-bold">6 Months</td>
+                                    <td class="py-3 px-2">₹9,999</td>
+                                    <td class="py-3 px-2">₹17,999</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-2 text-white font-bold">1 Year</td>
+                                    <td class="py-3 px-2">₹14,999</td>
+                                    <td class="py-3 px-2">₹25,999</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Policy & Admission -->
+                <div class="space-y-4">
+                    <div class="border-2 border-fightGray p-6 flex justify-between items-center bg-fightBlack">
+                        <div>
+                            <h4 class="font-bold text-lg text-white">ONE-TIME ADMISSION FEE</h4>
+                            <p class="text-xs font-mono text-gray-400">Required for new enrollments.</p>
+                        </div>
+                        <p class="text-3xl font-oswald font-bold text-fightRed">₹500</p>
+                    </div>
+                    
+                    <div class="border-2 border-fightGray p-6 bg-fightBlack h-full">
+                        <h4 class="font-bold text-lg mb-2 text-fightRed"><i class="fa-solid fa-triangle-exclamation mr-2"></i> POLICY NOTICE</h4>
+                        <ul class="text-xs font-mono text-gray-400 space-y-2">
+                            <li>• All fees paid are strictly <strong class="text-white">Non-Refundable</strong> and <strong class="text-white">Non-Transferable</strong>.</li>
+                            <li>• Participation implies consent to academy rules.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Timings Section -->
+    <section id="schedule" class="py-20 bg-fightBlack border-b border-fightGray">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">GYM TIMINGS</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <!-- Batch 1 -->
+                <div class="border-2 border-fightGray p-8 bg-fightDark text-center hover:border-fightRed transition-colors">
+                    <h3 class="font-bold text-2xl text-white mb-6">MON / WED / FRI</h3>
+                    <div class="space-y-4 font-mono">
+                        <div class="border-b-2 border-fightGray pb-4">
+                            <p class="text-gray-400 mb-1">MORNING SLOT</p>
+                            <p class="text-2xl font-bold text-fightRed">5:00 AM – 11:00 AM</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 mb-1">EVENING SLOT</p>
+                            <p class="text-2xl font-bold text-fightRed">5:00 PM – 11:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Batch 2 -->
+                <div class="border-2 border-fightGray p-8 bg-fightDark text-center hover:border-fightRed transition-colors">
+                    <h3 class="font-bold text-2xl text-white mb-6">TUE / THU / SAT</h3>
+                    <div class="space-y-4 font-mono">
+                        <div class="border-b-2 border-fightGray pb-4">
+                            <p class="text-gray-400 mb-1">MORNING SLOT</p>
+                            <p class="text-2xl font-bold text-fightRed">5:00 AM – 11:00 AM</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-400 mb-1">EVENING SLOT</p>
+                            <p class="text-2xl font-bold text-fightRed">5:00 PM – 11:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sunday Off Notice -->
+            <div class="bg-fightRed text-white p-6 text-center border-2 border-fightRed">
+                <h3 class="font-bold text-2xl tracking-widest"><i class="fa-solid fa-lock mr-2"></i> SUNDAY: CLOSED</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coaches Section -->
+    <section id="trainers" class="py-20 bg-white text-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">MEET THE COACHES</h2>
+            
+            <!-- Other Coaches Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Rahul -->
+                <div class="border-2 border-black p-4 bg-white text-center">
+                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                        <i class="fa-solid fa-user text-4xl"></i>
+                        <img src="coach-rahul.png" alt="Rahul" class="absolute inset-0 w-full h-full object-cover transition-all duration-300" onerror="this.style.display='none'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">RAHUL YADAV</h3>
+                    <p class="text-fightRed font-mono text-xs font-bold mb-2">Kickboxing & Karate</p>
+                    <p class="font-mono text-xs">Black belt in Karate. 4+ years teaching experience.</p>
+                </div>
+                <!-- Zafar -->
+                <div class="border-2 border-black p-4 bg-white text-center">
+                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                        <i class="fa-solid fa-user text-4xl"></i>
+                        <img src="coach-zafar.png" alt="Zafar" class="absolute inset-0 w-full h-full object-cover transition-all duration-300" onerror="this.style.display='none'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">SYED ZAFAR</h3>
+                    <p class="text-fightRed font-mono text-xs font-bold mb-2">BJJ & MMA</p>
+                    <p class="font-mono text-xs">BJJ Champion & MMA expert. 4+ years teaching experience.</p>
+                </div>
+                <!-- Saif -->
+                <div class="border-2 border-black p-4 bg-white text-center">
+                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                        <i class="fa-solid fa-user text-4xl"></i>
+                        <img src="coach-saif.png" alt="Saif" class="absolute inset-0 w-full h-full object-cover transition-all duration-300" onerror="this.style.display='none'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">SAIF</h3>
+                    <p class="text-fightRed font-mono text-xs font-bold mb-2">Fitness & Weightloss</p>
+                    <p class="font-mono text-xs">Certified Weight Management Trainer. 6+ years experience.</p>
+                </div>
+                <!-- Hussain -->
+                <div class="border-2 border-black p-4 bg-white text-center">
+                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                        <i class="fa-solid fa-user text-4xl"></i>
+                        <img src="coach-hussain.png" alt="Hussain" class="absolute inset-0 w-full h-full object-cover transition-all duration-300" onerror="this.style.display='none'">
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">HUSSAIN</h3>
+                    <p class="text-fightRed font-mono text-xs font-bold mb-2">Calisthenics & Parkour</p>
+                    <p class="font-mono text-xs">Conditioning expert. 3 years of teaching experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-fightBlack">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 border-4 border-fightGray p-8">
                 
-                const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-                if (reducedMotion) wind = 0;
-
-                for (let s = 0; s < subSteps; s++) {
-                    for (let i = 0; i < NUM_POINTS; i++) {
-                        if (pins.includes(i) || (pointerDown && i === grabbedPoint)) continue;
-                        const p = points[i];
-                        const vx = (p.x - p.px) * dampFactor;
-                        const vy = (p.y - p.py) * dampFactor;
-                        const vz = (p.z - p.pz) * dampFactor;
-                        
-                        const s1 = Math.sin(9.1 * p.u - 3.7 * p.v + 3.1 * simTime);
-                        const s2 = Math.sin(6.3 * p.u + 7.9 * p.v - 2.3 * simTime + 1.3);
-                        const s3 = Math.sin(2.9 * p.u + 1.7 * simTime + 0.8 * Math.sin(0.5 * simTime)) * Math.cos(2.3 * p.v - 0.9 * simTime);
-                        
-                        const ax = wind * 0.25 * Math.sin(3.3 * p.v + 1.1 * simTime + p.u);
-                        const ay = wind * 0.1 * s2 - gravity;
-                        const az = wind * (0.45 * s1 + 0.35 * s2 + 0.3 * s3);
-                        
-                        p.px = p.x; p.py = p.y; p.pz = p.z;
-                        p.x += vx + ax * h * h;
-                        p.y += vy + ay * h * h;
-                        p.z += vz + az * h * h;
-                    }
+                <!-- Info -->
+                <div>
+                    <h2 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-8 text-white">STEP INTO<br><span class="text-fightRed">THE GYM</span></h2>
                     
-                    for (let c = 0; c < constraints.length; c++) {
-                        const con = constraints[c];
-                        const p1 = points[con.i1], p2 = points[con.i2];
-                        const dx = p1.x - p2.x, dy = p1.y - p2.y, dz = p1.z - p2.z;
-                        const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                        if (dist === 0) continue;
-                        
-                        const diff = (dist - con.rest) / dist;
-                        const move = diff * con.stiffness;
-                        
-                        const isP1Fixed = pins.includes(con.i1) || (pointerDown && con.i1 === grabbedPoint);
-                        const isP2Fixed = pins.includes(con.i2) || (pointerDown && con.i2 === grabbedPoint);
-                        
-                        const w1 = isP1Fixed ? 0 : 0.5;
-                        const w2 = isP2Fixed ? 0 : 0.5;
-                        const totalW = w1 + w2;
-                        if (totalW === 0) continue;
-                        
-                        if (!isP1Fixed) {
-                            p1.x -= dx * move * (w1 / totalW);
-                            p1.y -= dy * move * (w1 / totalW);
-                            p1.z -= dz * move * (w1 / totalW);
-                        }
-                        if (!isP2Fixed) {
-                            p2.x += dx * move * (w2 / totalW);
-                            p2.y += dy * move * (w2 / totalW);
-                            p2.z += dz * move * (w2 / totalW);
-                        }
-                    }
+                    <div class="space-y-6 font-mono text-sm">
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-location-dot text-fightRed text-2xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-lg mb-1">ACADEMY ADDRESS</h4>
+                                <p class="text-gray-400 mb-2">Near MLA Colony, Syed Nagar 2, Road No. 12, Banjara Hills, Hyderabad, Telangana – 500034</p>
+                                <a href="https://maps.app.goo.gl/VEPt8Wo6xeogy8PBA" target="_blank" class="text-fightRed font-bold border-b border-fightRed hover:text-white hover:border-white">GET DIRECTIONS</a>
+                            </div>
+                        </div>
 
-                    // Tethers
-                    let ti = 0;
-                    for (let i = 0; i < NUM_POINTS; i++) {
-                        if (pins.includes(i) || (pointerDown && i === grabbedPoint)) continue;
-                        const p = points[i];
-                        
-                        for (let pinIdx = 0; pinIdx < 2; pinIdx++) {
-                            const pPin = points[pins[pinIdx]];
-                            const dx = p.x - pPin.x, dy = p.y - pPin.y, dz = p.z - pPin.z;
-                            const dist = Math.sqrt(dx*dx + dy*dy + dz*dz);
-                            const maxDist = (pinIdx === 0 ? tetherRest0[ti] : tetherRest1[ti]) * 1.02;
-                            
-                            if (dist > maxDist) {
-                                const scale = maxDist / dist;
-                                p.x = pPin.x + dx * scale;
-                                p.y = pPin.y + dy * scale;
-                                p.z = pPin.z + dz * scale;
-                            }
-                        }
-                        ti++;
-                    }
-                }
-            }
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-phone text-fightRed text-2xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-lg mb-1">CALL / WHATSAPP</h4>
+                                <p class="text-gray-400">+91 70937 72127 (Mohd Amir)</p>
+                            </div>
+                        </div>
 
-            // Update buffers
-            for (let i = 0; i < NUM_POINTS; i++) {
-                positions[i*3] = points[i].x;
-                positions[i*3+1] = points[i].y;
-                positions[i*3+2] = points[i].z;
-            }
+                        <div class="flex items-start">
+                            <i class="fa-solid fa-clock text-fightRed text-2xl mt-1 mr-4 w-6 text-center"></i>
+                            <div>
+                                <h4 class="font-bold text-white text-lg mb-1">TIMINGS</h4>
+                                <p class="text-gray-400">Mon-Sat: 5:00 AM – 11:00 AM | 5:00 PM – 11:00 PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
 
-            // Normals
-            for (let r = 0; r < ROWS; r++) {
-                for (let c = 0; c < COLS; c++) {
-                    const i = r * COLS + c;
-                    let left = c > 0 ? i - 1 : i;
-                    let right = c < COLS - 1 ? i + 1 : i;
-                    let down = r > 0 ? i - COLS : i;
-                    let up = r < ROWS - 1 ? i + COLS : i;
-                    
-                    const pL = points[left], pR = points[right], pD = points[down], pU = points[up];
-                    const dx1 = pR.x - pL.x, dy1 = pR.y - pL.y, dz1 = pR.z - pL.z;
-                    const dx2 = pU.x - pD.x, dy2 = pU.y - pD.y, dz2 = pU.z - pD.z;
-                    
-                    let nx = dy1 * dz2 - dz1 * dy2;
-                    let ny = dz1 * dx2 - dx1 * dz2;
-                    let nz = dx1 * dy2 - dy1 * dx2;
-                    
-                    const len = Math.sqrt(nx*nx + ny*ny + nz*nz) || 1;
-                    normals[i*3] = nx / len;
-                    normals[i*3+1] = ny / len;
-                    normals[i*3+2] = nz / len;
-                }
-            }
+                    <div class="mt-8 h-48 w-full border-2 border-fightGray p-1">
+                        <iframe title="Map" src="https://www.google.com/maps?q=17.4071212,78.4338152&z=15&output=embed" class="w-full h-full" style="border:0" loading="lazy"></iframe>
+                    </div>
+                </div>
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, posBuffer);
-            gl.bufferData(gl.ARRAY_BUFFER, positions, gl.DYNAMIC_DRAW);
-            gl.enableVertexAttribArray(posLoc);
-            gl.vertexAttribPointer(posLoc, 3, gl.FLOAT, false, 0, 0);
+                <!-- Form -->
+                <div class="bg-fightDark p-6 sm:p-8 border-2 border-fightGray">
+                    <h3 class="text-2xl font-bold mb-2 text-white">BOOK A FREE TRIAL</h3>
+                    <p class="font-mono text-xs text-gray-400 mb-6">Fill this out to open a pre-written WhatsApp message.</p>
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, normBuffer);
-            gl.bufferData(gl.ARRAY_BUFFER, normals, gl.DYNAMIC_DRAW);
-            gl.enableVertexAttribArray(normLoc);
-            gl.vertexAttribPointer(normLoc, 3, gl.FLOAT, false, 0, 0);
+                    <form id="trial-form" class="space-y-4 font-mono text-sm">
+                        <div>
+                            <label class="block text-gray-300 font-bold mb-2">FULL NAME</label>
+                            <input type="text" id="name" class="w-full bg-black border-2 border-fightGray p-3 text-white focus:outline-none focus:border-fightRed" placeholder="Enter name">
+                            <p id="name-error" class="hidden text-fightRed mt-1 font-bold">Please enter your name.</p>
+                        </div>
 
-            gl.bindBuffer(gl.ARRAY_BUFFER, uvBuffer);
-            gl.enableVertexAttribArray(uvLoc);
-            gl.vertexAttribPointer(uvLoc, 2, gl.FLOAT, false, 0, 0);
+                        <div>
+                            <label class="block text-gray-300 font-bold mb-2">PROGRAM</label>
+                            <select id="program" class="w-full bg-black border-2 border-fightGray p-3 text-white focus:outline-none focus:border-fightRed"></select>
+                        </div>
 
-            gl.clearColor(0.89, 0.89, 0.91, 1.0); // var(--paper)
-            gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+                        <div>
+                            <label class="block text-gray-300 font-bold mb-2">TIME SLOT</label>
+                            <select id="timeslot" class="w-full bg-black border-2 border-fightGray p-3 text-white focus:outline-none focus:border-fightRed">
+                                <option value="Morning (5:00 AM - 11:00 AM)">Morning (5AM - 11AM)</option>
+                                <option value="Evening (5:00 PM - 11:00 PM)">Evening (5PM - 11PM)</option>
+                            </select>
+                        </div>
 
-            gl.enable(gl.DEPTH_TEST);
-            gl.depthFunc(gl.LEQUAL);
-            gl.disable(gl.BLEND);
-            gl.disable(gl.CULL_FACE);
+                        <button type="submit" class="w-full bg-fightRed text-white border-2 border-fightRed font-oswald font-bold text-xl py-4 tracking-widest mt-4 fight-btn flex items-center justify-center">
+                            <i class="fa-brands fa-whatsapp mr-2"></i> BOOK NOW
+                        </button>
+                    </form>
+                </div>
 
-            gl.useProgram(program);
-            gl.uniform1i(hasTexLoc, hasTex);
-            if (hasTex) {
-                gl.activeTexture(gl.TEXTURE0);
-                gl.bindTexture(gl.TEXTURE_2D, texture);
-                gl.uniform1i(texLoc, 0);
-            }
+            </div>
+        </div>
+    </section>
 
-            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-            gl.drawElements(gl.TRIANGLES, numIndices, gl.UNSIGNED_SHORT, 0);
+    <!-- Footer -->
+    <footer class="bg-black border-t-4 border-fightRed py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-oswald font-bold tracking-widest text-white mb-4">WOLF MMA</h2>
+            <p class="font-mono text-xs text-gray-500 mb-4">&copy; 2025 - 2026 Wolf MMA Fitness Academy, Hyderabad.</p>
+            <div class="flex justify-center space-x-4">
+                <a href="https://wa.me/917093772127" class="text-gray-400 hover:text-white"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                <a href="https://www.instagram.com/wolf_mma_fitness/" class="text-gray-400 hover:text-white"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="https://www.youtube.com/@Ak.mma.fitness" class="text-gray-400 hover:text-white"><i class="fa-brands fa-youtube text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
 
-            rafId = requestAnimationFrame(render);
-        }
+    <script>
+        const WA_NUMBER = '917093772127';
+        const waLink = (msg) => `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
 
-        rafId = requestAnimationFrame(render);
+        // Mobile menu
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        document.addEventListener('visibilitychange', () => {
-            if (!document.hidden) {
-                lastTime = 0; // reset time
-                rafId = requestAnimationFrame(render);
+        // Pricing Toggle
+        const btnSingle = document.getElementById('toggle-single');
+        const btnCouple = document.getElementById('toggle-couple');
+        const priceDisplays = document.querySelectorAll('.price-display');
+        const typeDisplays = document.querySelectorAll('.type-display');
+
+        function setPricingMode(mode) {
+            if (mode === 'single') {
+                btnSingle.classList.add('bg-white', 'text-black');
+                btnSingle.classList.remove('text-white', 'hover:bg-fightGray');
+                btnCouple.classList.remove('bg-white', 'text-black');
+                btnCouple.classList.add('text-white', 'hover:bg-fightGray');
+                priceDisplays.forEach(el => el.textContent = el.getAttribute('data-single'));
+                typeDisplays.forEach(el => el.textContent = 'SINGLE');
             } else {
-                cancelAnimationFrame(rafId);
+                btnCouple.classList.add('bg-white', 'text-black');
+                btnCouple.classList.remove('text-white', 'hover:bg-fightGray');
+                btnSingle.classList.remove('bg-white', 'text-black');
+                btnSingle.classList.add('text-white', 'hover:bg-fightGray');
+                priceDisplays.forEach(el => el.textContent = el.getAttribute('data-couple'));
+                typeDisplays.forEach(el => el.textContent = 'COUPLE');
             }
+        }
+        btnSingle.addEventListener('click', () => setPricingMode('single'));
+        btnCouple.addEventListener('click', () => setPricingMode('couple'));
+
+        // Programs List
+        const programs = [
+            { name: 'MMA', icon: 'fa-hand-fist', desc: 'Striking, wrestling and submission grappling combined.', link: 'program-mma.html' },
+            { name: 'BJJ / Wrestling', icon: 'fa-people-arrows', desc: 'Leverage, joint locks, takedowns and chokeholds.', link: 'program-bjj.html' },
+            { name: 'Kickboxing / Muay Thai', icon: 'fa-bolt', desc: 'Punches, kicks, knees and elbows. Build power.', link: 'program-kickboxing.html' },
+            { name: 'Karate / Kung Fu', icon: 'fa-yin-yang', desc: 'Traditional forms, discipline and technique.', link: 'program-karate.html' },
+            { name: 'Gymnastic / Parkour', icon: 'fa-person-running', desc: 'Body control, flips, vaults, and agility.', link: 'program-parkour.html' },
+            { name: 'Strength / Conditioning', icon: 'fa-dumbbell', desc: 'Functional strength and body shaping.', link: 'program-strength.html' },
+            { name: 'Calisthenics', icon: 'fa-child-reaching', desc: 'Build strength using your own bodyweight.', link: 'program-calisthenics.html' },
+            { name: 'Boxing', icon: 'fa-hand-back-fist', desc: 'Footwork, combinations, defense and bag work.', link: 'program-boxing.html' },
+            { name: 'Personal Training', icon: 'fa-user-check', desc: 'A plan built around your goals, 1-on-1.', link: 'program-personal-training.html' },
+            { name: 'Kids Self-Defense', icon: 'fa-children', desc: 'Confidence, discipline, and self-defense.', link: 'program-kids.html' },
+            { name: 'Online Training', icon: 'fa-laptop', desc: 'Train from home with live virtual classes and personalized coaching.', link: 'program-online.html' }
+        ];
+
+        const grid = document.getElementById('programs-grid');
+        const programSelect = document.getElementById('program');
+
+        programs.forEach((p) => {
+            const msg = `Hello! I am interested in ${p.name}.`;
+            grid.insertAdjacentHTML('beforeend', `
+                <div class="border-b border-r border-fightGray p-6 hover:bg-fightDark transition-colors flex flex-col justify-between">
+                    <div>
+                        <i class="fa-solid ${p.icon} text-3xl text-fightRed mb-4"></i>
+                        <h3 class="text-2xl font-bold text-white mb-2">${p.name}</h3>
+                        <p class="font-mono text-sm text-gray-400 mb-6">${p.desc}</p>
+                    </div>
+                    <div class="flex gap-4 font-oswald font-bold text-sm">
+                        <a href="${p.link}" class="text-white hover:text-fightRed transition-colors">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        <a href="${waLink(msg)}" target="_blank" class="text-fightRed hover:text-white transition-colors">ENQUIRE</a>
+                    </div>
+                </div>`);
+                
+            const opt = document.createElement('option');
+            opt.value = p.name;
+            opt.textContent = p.name;
+            programSelect.appendChild(opt);
         });
-    })();
-</script>
+
+        // Form Submit
+        const form = document.getElementById('trial-form');
+        const nameInput = document.getElementById('name');
+        const nameError = document.getElementById('name-error');
+
+        nameInput.addEventListener('input', () => nameError.classList.add('hidden'));
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = nameInput.value.trim();
+            if (!name) { nameError.classList.remove('hidden'); nameInput.focus(); return; }
+            const program = programSelect.value;
+            const slot = document.getElementById('timeslot').value;
+            const msg = `Hello Wolf MMA! My name is ${name}. I would like to book a free trial for ${program}. Preferred slot: ${slot}.`;
+            window.open(waLink(msg), '_blank', 'noopener');
+            form.reset();
+        });
+    </script>
 </body>
 </html>

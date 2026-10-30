@@ -22,7 +22,7 @@
   function renderBadges() {
     const { open, note } = gymStatus();
     document.querySelectorAll('.open-badge').forEach(b => {
-      b.style.color = open ? '#22c55e' : '#e60000';
+      b.style.color = open ? '#ffffff' : '#8A94A8';
       b.innerHTML = `<span class="pulse"></span>${open ? 'OPEN NOW' : 'CLOSED'} · ${note.toUpperCase()}`;
     });
   }

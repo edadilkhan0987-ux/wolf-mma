@@ -12,25 +12,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WOLF MMA | Combat & Fitness Academy | Banjara Hills</title>
     <meta name="description" content="Hardcore MMA, Kickboxing, BJJ, Boxing, and Strength Training in Banjara Hills, Hyderabad. No egos, just results. Book a free trial.">
-    <meta name="theme-color" content="#070707">
-
-    <!-- Favicon -->
+    <meta name="theme-color" content="#05070D">
     <link rel="icon" type="image/jpeg" href="logo.jpeg">
 
-    <!-- Motion flag (skipped for users who prefer reduced motion) -->
     <script>if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('js-motion')</script>
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
+        /* ===== DARK NIGHT PALETTE – edit colours here ===== */
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        fightBlack: 'var(--c-black)',
-                        fightDark:  'var(--c-dark)',
-                        fightRed:   'var(--c-primary)',
-                        fightAmber: 'var(--c-accent)',
-                        fightGray:  '#242424',
+                        night:    '#05070D',   // page background
+                        midnight: '#0A0F1C',   // alternate sections
+                        dusk:     '#111829',   // cards / boxes
+                        line:     '#1E2840',   // borders
+                        moon:     '#E8EEF8',   // headings, main buttons
+                        mist:     '#9AA8C2',   // body text
+                        ice:      '#9DB8FF',   // highlights, hovers, glow
                     },
                     fontFamily: {
                         oswald: ['Oswald', 'sans-serif'],
@@ -44,80 +44,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-           <style>
-        /* ================= COLOUR PALETTE – MIDNIGHT MONOCHROME ================= */
-        :root {
-            --c-primary: #FFFFFF;              /* main – pure white        */
-            --c-accent:  #C9D6EA;              /* moonlight silver         */
-            --c-black:   #05070C;              /* midnight black           */
-            --c-dark:    #0C111B;              /* night navy               */
-            --c-light:   #EEF1F6;              /* cool off-white sections  */
-            --c-glow:    rgba(201, 214, 234, .35);
-        }
-        .grad-fire { background: linear-gradient(90deg, #FFFFFF, var(--c-accent) 60%, #8E9BB3); }
-
         /* ================= BASE ================= */
-        body { font-family: 'Roboto Mono', monospace; background-color: var(--c-black); color: #fff; overflow-x: hidden; }
+        body { font-family: 'Roboto Mono', monospace; background-color: #05070D; color: #E8EEF8; overflow-x: hidden; }
         h1, h2, h3, h4, .font-oswald { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
-        ::selection { background: var(--c-accent); color: #000; }
+        ::selection { background: #9DB8FF; color: #05070D; }
 
-        .fight-btn { transition: background-color .15s, color .15s, border-color .15s; }
-        .fight-btn:hover { background-color: var(--c-accent) !important; color: #000 !important; border-color: var(--c-accent) !important; }
-
-        .brutal-shadow { box-shadow: 8px 8px 0 0 var(--c-primary); }
-        .beast-glow { text-shadow: 0 0 40px var(--c-glow); }
+        .fight-btn { transition: background-color .15s, color .15s, border-color .15s, box-shadow .25s; }
+        .fight-btn:hover { box-shadow: 0 0 30px rgba(157,184,255,.35); }
+        .night-glow { box-shadow: 0 0 40px rgba(157,184,255,.16); }
+        .beast-glow { text-shadow: 0 0 40px rgba(157,184,255,.45); }
 
         /* Gallery marquee (phones / tablets) */
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .animate-marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
         .animate-marquee:hover { animation-play-state: paused; }
 
-        /* ================= MONOCHROME FIXES ================= */
-        /* White buttons / blocks get black text */
-        .bg-fightRed, .bg-fightRed i { color: #000 !important; }
-        .hover\:bg-fightRed:hover, .hover\:bg-fightRed:hover i { color: #000 !important; }
-
-        /* Hero headline – outlined "INNER BEAST" */
-        #home h1 .text-fightRed { color: transparent; -webkit-text-stroke: 2px #fff; }
-
-        /* Light sections (About, Coaches) */
-        #about.bg-white, #trainers.bg-white { background-color: var(--c-light); }
-        #about .text-fightRed, #trainers .text-fightRed { color: #000; }
-        #about h2 .text-fightRed, #about h3 .text-fightRed, #trainers h2 .text-fightRed { color: transparent; -webkit-text-stroke: 2px #000; }
-        #about .brutal-shadow, #trainers .brutal-shadow { box-shadow: 8px 8px 0 0 #000; }
-        #about .border-fightRed, #trainers .border-fightRed { border-color: #000; }
-        #trainers .grid > div:hover { box-shadow: 6px 6px 0 0 #000 !important; }
-        #about .grid-cols-2 > div:hover { background: #000 !important; color: #fff; }
-        #about .grid-cols-2 > div:hover i { color: #fff; }
-
-        /* Black & white photos – colour on hover */
-        #home video { filter: grayscale(1) contrast(1.15) brightness(.9); }
-        #about img, #trainers img { filter: grayscale(1) contrast(1.08); transition: filter .5s ease; }
-        #about img:hover, #trainers .grid > div:hover img, #about .border-4:hover img { filter: grayscale(0); }
-
-        /* Frosted night nav */
-        nav.bg-fightBlack { background-color: rgba(5, 7, 12, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
-        nav.border-fightRed { border-bottom-width: 1px; border-color: rgba(201, 214, 234, .25); }
-
         /* ================= NIGHT ATMOSPHERE ================= */
-        /* Moon glow in hero */
         #home::after { content: ''; position: absolute; top: -25%; right: -15%; width: 70vw; height: 70vw;
             max-width: 900px; max-height: 900px; border-radius: 50%; pointer-events: none; z-index: 1;
-            background: radial-gradient(circle, rgba(201, 214, 234, .16), transparent 62%); }
+            background: radial-gradient(circle, rgba(157,184,255,.14), transparent 62%); }
 
-        /* Faint stars in dark sections */
-        #programs, #plans, #schedule, #contact {
+        .night-sky {
             background-image:
                 radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.5), transparent 60%),
                 radial-gradient(1px 1px at 68% 42%, rgba(255,255,255,.35), transparent 60%),
-                radial-gradient(1.5px 1.5px at 38% 76%, rgba(201,214,234,.5), transparent 60%),
+                radial-gradient(1.5px 1.5px at 38% 76%, rgba(157,184,255,.5), transparent 60%),
                 radial-gradient(1px 1px at 86% 88%, rgba(255,255,255,.3), transparent 60%),
-                radial-gradient(1px 1px at 52% 8%, rgba(201,214,234,.4), transparent 60%);
+                radial-gradient(1px 1px at 52% 8%, rgba(157,184,255,.4), transparent 60%);
             background-size: 420px 420px;
         }
 
-        /* Film grain over everything */
-        body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .05;
+        body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .045;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
         /* ================= MOTION ================= */
@@ -130,10 +87,10 @@
 
         #scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; transform-origin: 0 50%;
             transform: scaleX(0); z-index: 80; pointer-events: none;
-            background: linear-gradient(90deg, #fff, var(--c-accent)); box-shadow: 0 0 12px var(--c-glow); }
+            background: linear-gradient(90deg, #E8EEF8, #9DB8FF); box-shadow: 0 0 12px rgba(157,184,255,.6); }
 
         .open-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem;
-            border: 1px solid currentColor; background: rgba(5, 7, 12, .75); backdrop-filter: blur(8px);
+            border: 1px solid currentColor; background: rgba(5,7,13,.75); backdrop-filter: blur(8px);
             font: 700 13px/1 'Oswald', sans-serif; letter-spacing: .18em; }
         .open-badge .pulse { width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: wolfPulse 1.4s infinite; }
         @keyframes wolfPulse { 0% { box-shadow: 0 0 0 0 currentColor; } 100% { box-shadow: 0 0 0 10px transparent; } }
@@ -141,76 +98,74 @@
         .sched-badge { margin: -1.75rem 0 2.5rem; }
 
         .wolf-glow { animation: wolfGlow 2.8s ease-in-out infinite; }
-        @keyframes wolfGlow { 0%,100% { box-shadow: 0 0 0 rgba(0,0,0,0); } 50% { box-shadow: 0 0 34px var(--c-glow); } }
+        @keyframes wolfGlow { 0%,100% { box-shadow: 0 0 0 rgba(0,0,0,0); } 50% { box-shadow: 0 0 34px rgba(157,184,255,.35); } }
 
         .elite-border { border: 2px solid transparent;
-            background: linear-gradient(var(--c-black), var(--c-black)) padding-box,
-                        linear-gradient(135deg, #fff, var(--c-accent), #5b6680) border-box; }
+            background: linear-gradient(#111829, #111829) padding-box,
+                        linear-gradient(135deg, #E8EEF8, #9DB8FF, #1E2840) border-box; }
 
         /* Custom cursor (mouse / trackpad only) */
         @media (hover: hover) and (pointer: fine) {
             html.has-cursor, html.has-cursor * { cursor: none !important; }
             html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
         }
-        .c-dot, .c-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%;
-            will-change: transform; mix-blend-mode: difference; }
-        .c-dot  { width: 8px; height: 8px; background: #fff; }
-        .c-ring { width: 40px; height: 40px; border: 2px solid #fff;
+        .c-dot, .c-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%; will-change: transform; }
+        .c-dot  { width: 8px; height: 8px; background: #9DB8FF; box-shadow: 0 0 10px #9DB8FF; }
+        .c-ring { width: 40px; height: 40px; border: 1.5px solid #E8EEF8; mix-blend-mode: difference;
             display: grid; place-items: center; transition: width .25s, height .25s, background-color .25s, border-color .25s; }
-        .c-ring span { font: 700 11px/1 'Oswald', sans-serif; letter-spacing: .15em; color: #fff; opacity: 0; transition: opacity .2s; }
-        .c-ring.is-hover { width: 64px; height: 64px; background: #fff; }
-        .c-ring.is-cta   { width: 84px; height: 84px; background: #000; border-color: #fff; mix-blend-mode: normal; }
+        .c-ring span { font: 700 11px/1 'Oswald', sans-serif; letter-spacing: .15em; color: #05070D; opacity: 0; transition: opacity .2s; }
+        .c-ring.is-hover { width: 64px; height: 64px; background: #E8EEF8; }
+        .c-ring.is-cta   { width: 84px; height: 84px; background: #9DB8FF; border-color: #9DB8FF; mix-blend-mode: normal; }
         .c-ring.is-cta span { opacity: 1; }
-        .claw { position: fixed; width: 60px; height: 60px; z-index: 9998; pointer-events: none; mix-blend-mode: difference; }
+        .claw { position: fixed; width: 60px; height: 60px; z-index: 9998; pointer-events: none; }
 
         @media (prefers-reduced-motion: reduce) {
             .animate-marquee, .open-badge .pulse, .wolf-glow { animation: none !important; }
         }
     </style>
-    </style>
 </head>
-<body class="bg-fightBlack text-white antialiased relative">
+<body class="bg-night text-moon antialiased relative">
 
     <!-- Floating Social Buttons -->
     <div class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2">
         <a href="https://wa.me/917093772127" target="_blank" rel="noopener" aria-label="WhatsApp"
-           class="w-12 h-12 bg-fightRed text-white flex items-center justify-center border-2 border-transparent hover:bg-fightAmber hover:text-black transition-colors">
+           class="w-12 h-12 bg-moon text-night flex items-center justify-center hover:bg-ice transition-colors night-glow">
             <i class="fa-brands fa-whatsapp text-2xl"></i>
         </a>
         <a href="https://www.instagram.com/wolf_mma_fitness/" target="_blank" rel="noopener" aria-label="Instagram"
-           class="w-12 h-12 bg-white text-black flex items-center justify-center border-2 border-white hover:bg-fightAmber hover:border-fightAmber transition-colors">
+           class="w-12 h-12 bg-dusk text-moon border border-line flex items-center justify-center hover:bg-ice hover:text-night transition-colors">
             <i class="fa-brands fa-instagram text-2xl"></i>
         </a>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-40 bg-fightBlack border-b-4 border-fightRed">
+    <nav class="fixed top-0 left-0 right-0 z-40 bg-night/75 backdrop-blur-md border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-4 group">
-                    <div class="w-12 h-12 shrink-0 bg-white p-1">
+                    <div class="w-12 h-12 shrink-0 bg-dusk border border-line p-1">
                         <img src="logo.jpeg" alt="Logo" class="w-full h-full object-cover">
                     </div>
-                    <span class="text-2xl sm:text-3xl font-oswald font-bold tracking-widest text-white leading-none">WOLF <span class="text-fightRed">MMA</span></span>
+                    <span class="text-2xl sm:text-3xl font-oswald font-bold tracking-widest text-moon leading-none">WOLF <span class="text-ice">MMA</span></span>
                 </a>
 
-                <div class="hidden md:flex items-center space-x-6 text-sm font-oswald tracking-widest">
-                    <a href="/" class="hover:text-fightAmber transition-colors">HOME</a>
-                    <a href="#about" class="hover:text-fightAmber transition-colors">ABOUT</a>
-                    <a href="#programs" class="hover:text-fightAmber transition-colors">PROGRAMS</a>
-                    <a href="#plans" class="hover:text-fightAmber transition-colors">PLANS</a>
-                    <a href="#schedule" class="hover:text-fightAmber transition-colors">TIMINGS</a>
-                    <a href="#trainers" class="hover:text-fightAmber transition-colors">COACHES</a>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-oswald tracking-widest text-mist">
+                    <a href="/" class="hover:text-ice transition-colors">HOME</a>
+                    <a href="#about" class="hover:text-ice transition-colors">ABOUT</a>
+                    <a href="#programs" class="hover:text-ice transition-colors">PROGRAMS</a>
+                    <a href="#plans" class="hover:text-ice transition-colors">PLANS</a>
+                    <a href="#schedule" class="hover:text-ice transition-colors">TIMINGS</a>
+                    <a href="#trainers" class="hover:text-ice transition-colors">COACHES</a>
                 </div>
 
                 <div class="hidden lg:block">
-                    <a href="#contact" class="inline-block bg-fightRed text-white border-2 border-fightRed font-oswald font-bold px-6 py-2 tracking-widest fight-btn">
+                    <a href="#contact" class="inline-block bg-moon text-night border-2 border-moon font-oswald font-bold px-6 py-2 tracking-widest hover:bg-ice hover:border-ice fight-btn">
                         FREE TRIAL
                     </a>
                 </div>
 
                 <div class="md:hidden">
-                    <button id="menu-btn" class="text-white focus:outline-none p-2" aria-label="Menu">
+                    <button id="menu-btn" class="text-moon focus:outline-none p-2" aria-label="Menu">
                         <i class="fa-solid fa-bars text-2xl"></i>
                     </button>
                 </div>
@@ -218,46 +173,46 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-fightDark border-b-2 border-fightAmber px-4 pt-2 pb-6 space-y-4">
-            <a href="/" class="block py-2 font-oswald text-xl hover:text-fightAmber">HOME</a>
-            <a href="#about" class="block py-2 font-oswald text-xl hover:text-fightAmber">ABOUT</a>
-            <a href="#programs" class="block py-2 font-oswald text-xl hover:text-fightAmber">PROGRAMS</a>
-            <a href="#plans" class="block py-2 font-oswald text-xl hover:text-fightAmber">PLANS</a>
-            <a href="#schedule" class="block py-2 font-oswald text-xl hover:text-fightAmber">TIMINGS</a>
-            <a href="#trainers" class="block py-2 font-oswald text-xl hover:text-fightAmber">COACHES</a>
-            <a href="#contact" class="block py-2 font-oswald text-xl hover:text-fightAmber">CONTACT</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-midnight border-b border-line px-4 pt-2 pb-6 space-y-4">
+            <a href="/" class="block py-2 font-oswald text-xl hover:text-ice">HOME</a>
+            <a href="#about" class="block py-2 font-oswald text-xl hover:text-ice">ABOUT</a>
+            <a href="#programs" class="block py-2 font-oswald text-xl hover:text-ice">PROGRAMS</a>
+            <a href="#plans" class="block py-2 font-oswald text-xl hover:text-ice">PLANS</a>
+            <a href="#schedule" class="block py-2 font-oswald text-xl hover:text-ice">TIMINGS</a>
+            <a href="#trainers" class="block py-2 font-oswald text-xl hover:text-ice">COACHES</a>
+            <a href="#contact" class="block py-2 font-oswald text-xl hover:text-ice">CONTACT</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center pt-20 relative border-b-4 border-fightRed overflow-hidden">
+    <section id="home" class="min-h-screen flex items-center pt-20 relative bg-night border-b border-line overflow-hidden">
         <div class="absolute inset-0 z-0 overflow-hidden">
             <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
                 <source src="boxing.mp4" type="video/mp4">
             </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-fightBlack via-transparent to-fightBlack/60"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-night via-transparent to-night/60"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full relative z-10 flex flex-col items-center justify-center text-center">
-            <div class="w-40 h-40 sm:w-56 sm:h-56 mb-8 bg-black border-4 border-fightRed p-2 brutal-shadow">
+            <div class="w-40 h-40 sm:w-56 sm:h-56 mb-8 bg-night border-2 border-moon/70 p-2 night-glow">
                 <img src="logo.jpeg" alt="Wolf MMA Logo" class="w-full h-full object-cover">
             </div>
 
-            <div class="inline-block bg-fightAmber text-black font-oswald font-bold px-4 py-1 mb-6 tracking-widest text-sm">
+            <div class="inline-block bg-moon text-night font-oswald font-bold px-4 py-1 mb-6 tracking-widest text-sm">
                 BANJARA HILLS · HYDERABAD
             </div>
-            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold leading-none tracking-tighter mb-6">
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-bold leading-none tracking-tighter mb-6 text-moon">
                 UNLEASH YOUR<br>
-                <span class="text-fightRed beast-glow">INNER BEAST</span>
+                <span class="text-ice beast-glow">INNER BEAST</span>
             </h1>
-            <p class="text-base sm:text-xl font-mono text-gray-300 max-w-2xl mx-auto mb-10">
+            <p class="text-base sm:text-xl font-mono text-mist max-w-2xl mx-auto mb-10">
                 MMA, Kickboxing, BJJ, Calisthenics, Karate & more. No egos. Just hard work and results.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#contact" class="bg-fightRed text-white border-2 border-fightRed font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
+                <a href="#contact" class="bg-moon text-night border-2 border-moon font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center hover:bg-ice hover:border-ice fight-btn">
                     CLAIM FREE TRIAL
                 </a>
-                <a href="#programs" class="bg-transparent text-white border-2 border-white font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center fight-btn">
+                <a href="#programs" class="bg-night/40 text-moon border-2 border-moon/60 font-oswald font-bold text-xl px-8 py-4 tracking-widest text-center hover:bg-moon hover:text-night fight-btn">
                     VIEW PROGRAMS
                 </a>
             </div>
@@ -265,89 +220,89 @@
     </section>
 
     <!-- Stats Strip -->
-    <section id="stats" class="grad-fire text-black border-b-4 border-black">
+    <section id="stats" class="bg-dusk border-b border-line">
         <div class="max-w-7xl mx-auto px-4 py-10 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold"><span class="count" data-to="15">15</span>+</p><p class="font-mono text-xs font-bold tracking-widest mt-2">YEARS OF COACHING</p></div>
-            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold"><span class="count" data-to="11">11</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2">PROGRAMS</p></div>
-            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold"><span class="count" data-to="5">5</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2">EXPERT COACHES</p></div>
-            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold"><span class="count" data-to="6">6</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2">DAYS A WEEK</p></div>
+            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold text-moon"><span class="count" data-to="15">15</span><span class="text-ice">+</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2 text-mist">YEARS OF COACHING</p></div>
+            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold text-moon"><span class="count" data-to="11">11</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2 text-mist">PROGRAMS</p></div>
+            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold text-moon"><span class="count" data-to="5">5</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2 text-mist">EXPERT COACHES</p></div>
+            <div class="stat"><p class="font-oswald text-5xl sm:text-6xl font-bold text-moon"><span class="count" data-to="6">6</span></p><p class="font-mono text-xs font-bold tracking-widest mt-2 text-mist">DAYS A WEEK</p></div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white text-black relative overflow-hidden">
+    <section id="about" class="py-20 bg-midnight night-sky relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                    <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-6">
-                        FORGED IN<br><span class="text-fightRed">DISCIPLINE</span>
+                    <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-6 text-moon">
+                        FORGED IN<br><span class="text-ice">DISCIPLINE</span>
                     </h2>
-                    <p class="text-lg font-mono mb-6 font-bold">
-                        Established in 2016, Wolf MMA Fitness is a hardcore combat sports academy in Banjara Hills. Founded by Mohd Amir, we don't just teach fighting—we build character.
+                    <p class="text-lg font-mono mb-6 font-bold text-mist">
+                        Established in 2026, Wolf MMA Fitness is a hardcore combat sports academy in Banjara Hills. Founded by Mohd Amir, we don't just teach fighting—we build character.
                     </p>
                     <div class="grid grid-cols-2 gap-4">
-                        <div class="border-2 border-black p-4 hover:bg-fightAmber transition-colors">
-                            <h4 class="font-bold text-xl mb-2"><i class="fa-solid fa-dumbbell text-fightRed"></i> PRO EQUIPMENT</h4>
-                            <p class="text-sm font-mono">Heavy bags, mats, and weights built for combat.</p>
+                        <div class="border border-line bg-dusk p-4 hover:border-ice transition-colors">
+                            <h4 class="font-bold text-xl mb-2 text-moon"><i class="fa-solid fa-dumbbell text-ice"></i> PRO EQUIPMENT</h4>
+                            <p class="text-sm font-mono text-mist">Heavy bags, mats, and weights built for combat.</p>
                         </div>
-                        <div class="border-2 border-black p-4 hover:bg-fightAmber transition-colors">
-                            <h4 class="font-bold text-xl mb-2"><i class="fa-solid fa-award text-fightRed"></i> CHAMPION COACHES</h4>
-                            <p class="text-sm font-mono">Train with national and international fighters.</p>
+                        <div class="border border-line bg-dusk p-4 hover:border-ice transition-colors">
+                            <h4 class="font-bold text-xl mb-2 text-moon"><i class="fa-solid fa-award text-ice"></i> CHAMPION COACHES</h4>
+                            <p class="text-sm font-mono text-mist">Train with national and international fighters.</p>
                         </div>
                     </div>
                     <div class="mt-8">
-                        <h4 class="font-oswald font-bold text-xl mb-4 border-b-2 border-black pb-2">AFFILIATED WITH:</h4>
-                        <ul class="font-mono text-sm space-y-2 font-bold">
-                            <li><i class="fa-solid fa-caret-right text-fightRed"></i> Iskimos Kickboxing Academy</li>
-                            <li><i class="fa-solid fa-caret-right text-fightRed"></i> Intl Shaolins Ninja Kungfu</li>
-                            <li><i class="fa-solid fa-caret-right text-fightRed"></i> Shotokan Karate & Kickers Martial Arts</li>
+                        <h4 class="font-oswald font-bold text-xl mb-4 border-b border-line pb-2 text-moon">AFFILIATED WITH:</h4>
+                        <ul class="font-mono text-sm space-y-2 font-bold text-mist">
+                            <li><i class="fa-solid fa-caret-right text-ice"></i> Iskimos Kickboxing Academy</li>
+                            <li><i class="fa-solid fa-caret-right text-ice"></i> Intl Shaolins Ninja Kungfu</li>
+                            <li><i class="fa-solid fa-caret-right text-ice"></i> Shotokan Karate & Kickers Martial Arts</li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Head Coach -->
-                <div class="border-4 border-black bg-white brutal-shadow flex flex-col">
-                    <div class="relative w-full h-80 border-b-4 border-black overflow-hidden bg-gray-200">
+                <div class="amir-card border border-line bg-dusk night-glow flex flex-col">
+                    <div class="relative w-full h-80 border-b border-line overflow-hidden bg-night">
                         <img src="coach-amir.png" alt="Mohd Amir" loading="lazy" decoding="async" class="w-full h-full object-cover" onerror="this.style.display='none'">
                     </div>
                     <div class="p-6 sm:p-8">
-                        <h3 class="text-3xl font-bold uppercase mb-1">MOHD AMIR</h3>
-                        <p class="text-fightRed font-mono font-bold mb-4 tracking-widest">HEAD COACH & FOUNDER</p>
-                        <p class="font-mono text-sm mb-6 leading-relaxed">Mastery in MMA, Kickboxing & Fitness Skills. Certified at the highest level with 15+ years of teaching experience.</p>
-                        <a href="tel:+917093772127" class="inline-block bg-black text-white font-oswald font-bold text-lg px-6 py-3 tracking-wider hover:bg-fightRed transition-colors"><i class="fa-solid fa-phone mr-2"></i> +91 70937 72127</a>
+                        <h3 class="text-3xl font-bold uppercase mb-1 text-moon">MOHD AMIR</h3>
+                        <p class="text-ice font-mono font-bold mb-4 tracking-widest">HEAD COACH & FOUNDER</p>
+                        <p class="font-mono text-sm mb-6 leading-relaxed text-mist">Mastery in MMA, Kickboxing & Fitness Skills. Certified at the highest level with 15+ years of teaching experience.</p>
+                        <a href="tel:+917093772127" class="inline-block bg-moon text-night font-oswald font-bold text-lg px-6 py-3 tracking-wider hover:bg-ice transition-colors"><i class="fa-solid fa-phone mr-2"></i> +91 70937 72127</a>
                     </div>
                 </div>
             </div>
 
             <!-- Gallery -->
-            <div class="mt-24 pt-16 border-t-4 border-black">
-                <h3 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-12 text-center">
-                    INSIDE THE <span class="text-fightRed">GYM</span>
+            <div class="mt-24 pt-16 border-t border-line">
+                <h3 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-12 text-center text-moon">
+                    INSIDE THE <span class="text-ice">GYM</span>
                 </h3>
                 <div class="relative w-full overflow-hidden py-4">
                     <div class="animate-marquee gap-6 sm:gap-10 px-3">
                         <!-- SET 1 -->
-                        <img src="gym-1.png"  alt="Gym 1"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-2.png"  alt="Gym 2"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-3.png"  alt="Gym 3"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-4.png"  alt="Gym 4"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-5.png"  alt="Gym 5"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-6.png"  alt="Gym 6"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-7.png"  alt="Gym 7"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-8.png"  alt="Gym 8"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-9.png"  alt="Gym 9"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-10.png" alt="Gym 10" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
+                        <img src="gym-1.png"  alt="Gym 1"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-2.png"  alt="Gym 2"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-3.png"  alt="Gym 3"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-4.png"  alt="Gym 4"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-5.png"  alt="Gym 5"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-6.png"  alt="Gym 6"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-7.png"  alt="Gym 7"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-8.png"  alt="Gym 8"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-9.png"  alt="Gym 9"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-10.png" alt="Gym 10" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
                         <!-- SET 2 (loop copy – removed automatically on desktop) -->
-                        <img src="gym-1.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-2.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-3.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-4.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-5.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-6.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-7.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-8.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-9.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
-                        <img src="gym-10.png" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border-4 border-black brutal-shadow shrink-0">
+                        <img src="gym-1.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-2.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-3.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-4.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-5.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-6.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-7.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-8.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-9.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
+                        <img src="gym-10.png" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
                     </div>
                 </div>
             </div>
@@ -355,164 +310,164 @@
     </section>
 
     <!-- Programs Section -->
-    <section id="programs" class="py-20 bg-fightBlack border-b border-fightGray">
+    <section id="programs" class="py-20 bg-night night-sky border-b border-line">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">TRAINING <span class="text-fightAmber">DISCIPLINES</span></h2>
-            <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-fightGray"></div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-4 border-ice pl-4 text-moon">TRAINING <span class="text-ice">DISCIPLINES</span></h2>
+            <div id="programs-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-line"></div>
         </div>
     </section>
 
     <!-- Plans Section -->
-    <section id="plans" class="py-20 bg-fightDark">
+    <section id="plans" class="py-20 bg-midnight night-sky">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">MEMBERSHIPS & <span class="text-fightAmber">PLANS</span></h2>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-4 border-ice pl-4 text-moon">MEMBERSHIPS & <span class="text-ice">PLANS</span></h2>
 
             <!-- Gym Memberships -->
             <div class="mb-16">
                 <div class="flex flex-col md:flex-row items-center justify-between mb-6">
-                    <h3 class="text-2xl font-bold tracking-widest text-fightRed">OFFLINE GYM MEMBERSHIPS</h3>
-                    <div class="flex border-2 border-white mt-4 md:mt-0">
-                        <button id="toggle-single" class="px-6 py-2 font-oswald font-bold bg-white text-black transition-colors">SINGLE</button>
-                        <button id="toggle-couple" class="px-6 py-2 font-oswald font-bold text-white hover:bg-fightGray transition-colors">COUPLE</button>
+                    <h3 class="text-2xl font-bold tracking-widest text-ice">OFFLINE GYM MEMBERSHIPS</h3>
+                    <div class="flex border border-moon/60 mt-4 md:mt-0">
+                        <button id="toggle-single" class="px-6 py-2 font-oswald font-bold bg-moon text-night transition-colors">SINGLE</button>
+                        <button id="toggle-couple" class="px-6 py-2 font-oswald font-bold text-moon hover:bg-dusk transition-colors">COUPLE</button>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="border-2 border-fightGray p-6 flex flex-col justify-between hover:border-fightAmber transition-colors bg-fightBlack">
+                    <div class="border border-line p-6 flex flex-col justify-between hover:border-ice transition-colors bg-dusk">
                         <div>
-                            <p class="font-mono text-gray-500 mb-2">01.</p>
-                            <h4 class="text-2xl font-bold mb-4">ONE MONTH</h4>
-                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹2,999" data-couple="₹4,999">₹2,999</p>
-                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                            <p class="font-mono text-mist/60 mb-2">01.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-moon">ONE MONTH</h4>
+                            <p class="text-4xl font-oswald font-bold text-moon mb-2 price-display" data-single="₹2,999" data-couple="₹4,999">₹2,999</p>
+                            <p class="text-xs font-mono text-mist uppercase type-display">SINGLE</p>
                         </div>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%201%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center border-2 border-white font-oswald font-bold py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">ENQUIRE NOW</a>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%201%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center border border-moon/60 text-moon font-oswald font-bold py-2 hover:bg-moon hover:text-night transition-colors">ENQUIRE NOW</a>
                     </div>
-                    <div class="border-2 border-fightGray p-6 flex flex-col justify-between hover:border-fightAmber transition-colors bg-fightBlack">
+                    <div class="border border-line p-6 flex flex-col justify-between hover:border-ice transition-colors bg-dusk">
                         <div>
-                            <p class="font-mono text-gray-500 mb-2">02.</p>
-                            <h4 class="text-2xl font-bold mb-4">THREE MONTHS</h4>
-                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹6,999" data-couple="₹11,999">₹6,999</p>
-                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                            <p class="font-mono text-mist/60 mb-2">02.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-moon">THREE MONTHS</h4>
+                            <p class="text-4xl font-oswald font-bold text-moon mb-2 price-display" data-single="₹6,999" data-couple="₹11,999">₹6,999</p>
+                            <p class="text-xs font-mono text-mist uppercase type-display">SINGLE</p>
                         </div>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%203%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center border-2 border-white font-oswald font-bold py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">ENQUIRE NOW</a>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%203%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center border border-moon/60 text-moon font-oswald font-bold py-2 hover:bg-moon hover:text-night transition-colors">ENQUIRE NOW</a>
                     </div>
-                    <div class="border-2 border-fightRed p-6 flex flex-col justify-between bg-fightBlack relative wolf-glow">
-                        <div class="absolute top-0 right-0 bg-fightAmber text-black font-mono text-xs font-bold px-2 py-1">🔥 POPULAR</div>
+                    <div class="border border-ice p-6 flex flex-col justify-between bg-dusk relative wolf-glow">
+                        <div class="absolute top-0 right-0 bg-ice text-night font-mono text-xs font-bold px-2 py-1">★ POPULAR</div>
                         <div>
-                            <p class="font-mono text-gray-500 mb-2">03.</p>
-                            <h4 class="text-2xl font-bold mb-4 text-fightRed">SIX MONTHS</h4>
-                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹9,999" data-couple="₹17,999">₹9,999</p>
-                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                            <p class="font-mono text-mist/60 mb-2">03.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-ice">SIX MONTHS</h4>
+                            <p class="text-4xl font-oswald font-bold text-moon mb-2 price-display" data-single="₹9,999" data-couple="₹17,999">₹9,999</p>
+                            <p class="text-xs font-mono text-mist uppercase type-display">SINGLE</p>
                         </div>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%206%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center bg-fightRed text-white font-oswald font-bold py-2 hover:bg-fightAmber hover:text-black transition-colors">ENQUIRE NOW</a>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%206%20Month%20Gym%20Membership." target="_blank" class="mt-6 block text-center bg-moon text-night font-oswald font-bold py-2 hover:bg-ice transition-colors">ENQUIRE NOW</a>
                     </div>
-                    <div class="border-2 border-fightGray p-6 flex flex-col justify-between hover:border-fightAmber transition-colors bg-fightBlack">
+                    <div class="border border-line p-6 flex flex-col justify-between hover:border-ice transition-colors bg-dusk">
                         <div>
-                            <p class="font-mono text-gray-500 mb-2">04.</p>
-                            <h4 class="text-2xl font-bold mb-4">ONE YEAR</h4>
-                            <p class="text-4xl font-oswald font-bold text-white mb-2 price-display" data-single="₹14,999" data-couple="₹25,999">₹14,999</p>
-                            <p class="text-xs font-mono text-gray-400 uppercase type-display">SINGLE</p>
+                            <p class="font-mono text-mist/60 mb-2">04.</p>
+                            <h4 class="text-2xl font-bold mb-4 text-moon">ONE YEAR</h4>
+                            <p class="text-4xl font-oswald font-bold text-moon mb-2 price-display" data-single="₹14,999" data-couple="₹25,999">₹14,999</p>
+                            <p class="text-xs font-mono text-mist uppercase type-display">SINGLE</p>
                         </div>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%201%20Year%20Gym%20Membership." target="_blank" class="mt-6 block text-center border-2 border-white font-oswald font-bold py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">ENQUIRE NOW</a>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20the%201%20Year%20Gym%20Membership." target="_blank" class="mt-6 block text-center border border-moon/60 text-moon font-oswald font-bold py-2 hover:bg-moon hover:text-night transition-colors">ENQUIRE NOW</a>
                     </div>
                 </div>
             </div>
 
             <!-- Online Training -->
             <div class="mb-16">
-                <h3 class="text-2xl font-bold tracking-widest text-fightRed mb-6">ONLINE TRAINING PACKAGES</h3>
+                <h3 class="text-2xl font-bold tracking-widest text-ice mb-6">ONLINE TRAINING PACKAGES</h3>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center hover:border-fightAmber transition-colors">
-                        <h4 class="text-xl font-bold mb-2">MONTHLY</h4>
-                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹2,500</p>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(1%20Month)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">JOIN</a>
+                    <div class="border border-line p-6 bg-dusk text-center hover:border-ice transition-colors">
+                        <h4 class="text-xl font-bold mb-2 text-moon">MONTHLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-moon mb-4">₹2,500</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(1%20Month)." target="_blank" class="block border border-moon/60 text-moon font-oswald py-2 hover:bg-moon hover:text-night transition-colors">JOIN</a>
                     </div>
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center hover:border-fightAmber transition-colors">
-                        <h4 class="text-xl font-bold mb-2">QUARTERLY</h4>
-                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹7,000</p>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(3%20Months)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">JOIN</a>
+                    <div class="border border-line p-6 bg-dusk text-center hover:border-ice transition-colors">
+                        <h4 class="text-xl font-bold mb-2 text-moon">QUARTERLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-moon mb-4">₹7,000</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(3%20Months)." target="_blank" class="block border border-moon/60 text-moon font-oswald py-2 hover:bg-moon hover:text-night transition-colors">JOIN</a>
                     </div>
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center hover:border-fightAmber transition-colors">
-                        <h4 class="text-xl font-bold mb-2">HALF-YEARLY</h4>
-                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹14,000</p>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(6%20Months)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">JOIN</a>
+                    <div class="border border-line p-6 bg-dusk text-center hover:border-ice transition-colors">
+                        <h4 class="text-xl font-bold mb-2 text-moon">HALF-YEARLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-moon mb-4">₹14,000</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(6%20Months)." target="_blank" class="block border border-moon/60 text-moon font-oswald py-2 hover:bg-moon hover:text-night transition-colors">JOIN</a>
                     </div>
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack text-center hover:border-fightAmber transition-colors">
-                        <h4 class="text-xl font-bold mb-2">YEARLY</h4>
-                        <p class="text-3xl font-oswald font-bold text-white mb-4">₹24,000</p>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(12%20Months)." target="_blank" class="block border-2 border-white font-oswald py-2 hover:bg-fightAmber hover:border-fightAmber hover:text-black transition-colors">JOIN</a>
+                    <div class="border border-line p-6 bg-dusk text-center hover:border-ice transition-colors">
+                        <h4 class="text-xl font-bold mb-2 text-moon">YEARLY</h4>
+                        <p class="text-3xl font-oswald font-bold text-moon mb-4">₹24,000</p>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20want%20to%20join%20Online%20Training%20(12%20Months)." target="_blank" class="block border border-moon/60 text-moon font-oswald py-2 hover:bg-moon hover:text-night transition-colors">JOIN</a>
                     </div>
                 </div>
             </div>
 
             <!-- Combat Sports -->
             <div class="mb-16">
-                <h3 class="text-2xl font-bold tracking-widest text-fightRed mb-6">COMBAT SPORTS PRICING</h3>
+                <h3 class="text-2xl font-bold tracking-widest text-ice mb-6">COMBAT SPORTS PRICING</h3>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack shadow-xl hover:border-fightAmber transition-colors">
-                        <h4 class="text-2xl font-bold text-white mb-1">BOXING</h4>
-                        <p class="text-xs font-mono text-gray-400 uppercase mb-4">Skill & Conditioning</p>
-                        <div class="space-y-2 font-mono text-sm text-gray-300 border-t border-b border-fightGray py-4 mb-4">
-                            <div class="flex justify-between"><span>1 Month</span> <span class="font-bold text-white">₹4,999</span></div>
-                            <div class="flex justify-between"><span>3 Months</span> <span class="font-bold text-white">₹12,999</span></div>
-                            <div class="flex justify-between"><span>6 Months</span> <span class="font-bold text-white">₹19,999</span></div>
+                    <div class="border border-line p-6 bg-dusk hover:border-ice transition-colors">
+                        <h4 class="text-2xl font-bold text-moon mb-1">BOXING</h4>
+                        <p class="text-xs font-mono text-mist uppercase mb-4">Skill & Conditioning</p>
+                        <div class="space-y-2 font-mono text-sm text-mist border-t border-b border-line py-4 mb-4">
+                            <div class="flex justify-between"><span>1 Month</span> <span class="font-bold text-moon">₹4,999</span></div>
+                            <div class="flex justify-between"><span>3 Months</span> <span class="font-bold text-moon">₹12,999</span></div>
+                            <div class="flex justify-between"><span>6 Months</span> <span class="font-bold text-moon">₹19,999</span></div>
                         </div>
-                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-calendar mr-1 text-fightAmber"></i> Schedule: Mon / Wed / Fri</p>
-                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-clock mr-1 text-fightAmber"></i> AM: 8:00 - 9:00 | PM: 7:00 - 8:00</p>
+                        <p class="text-xs font-mono text-mist"><i class="fa-regular fa-calendar mr-1 text-ice"></i> Schedule: Mon / Wed / Fri</p>
+                        <p class="text-xs font-mono text-mist"><i class="fa-regular fa-clock mr-1 text-ice"></i> AM: 8:00 - 9:00 | PM: 7:00 - 8:00</p>
                     </div>
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack shadow-xl hover:border-fightAmber transition-colors">
-                        <h4 class="text-2xl font-bold text-white mb-1">KICKBOXING & MMA</h4>
-                        <p class="text-xs font-mono text-gray-400 uppercase mb-4">Full Combat Integration</p>
-                        <div class="space-y-2 font-mono text-sm text-gray-300 border-t border-b border-fightGray py-4 mb-4">
-                            <div class="flex justify-between"><span>1 Month</span> <span class="font-bold text-white">₹4,999</span></div>
-                            <div class="flex justify-between"><span>3 Months</span> <span class="font-bold text-white">₹12,999</span></div>
-                            <div class="flex justify-between"><span>6 Months</span> <span class="font-bold text-white">₹19,999</span></div>
+                    <div class="border border-line p-6 bg-dusk hover:border-ice transition-colors">
+                        <h4 class="text-2xl font-bold text-moon mb-1">KICKBOXING & MMA</h4>
+                        <p class="text-xs font-mono text-mist uppercase mb-4">Full Combat Integration</p>
+                        <div class="space-y-2 font-mono text-sm text-mist border-t border-b border-line py-4 mb-4">
+                            <div class="flex justify-between"><span>1 Month</span> <span class="font-bold text-moon">₹4,999</span></div>
+                            <div class="flex justify-between"><span>3 Months</span> <span class="font-bold text-moon">₹12,999</span></div>
+                            <div class="flex justify-between"><span>6 Months</span> <span class="font-bold text-moon">₹19,999</span></div>
                         </div>
-                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-calendar mr-1 text-fightAmber"></i> Schedule: Mon / Wed / Fri</p>
-                        <p class="text-xs font-mono text-gray-400"><i class="fa-regular fa-clock mr-1 text-fightAmber"></i> AM: 7:00 - 8:00 | PM: 8:00 - 9:00</p>
+                        <p class="text-xs font-mono text-mist"><i class="fa-regular fa-calendar mr-1 text-ice"></i> Schedule: Mon / Wed / Fri</p>
+                        <p class="text-xs font-mono text-mist"><i class="fa-regular fa-clock mr-1 text-ice"></i> AM: 7:00 - 8:00 | PM: 8:00 - 9:00</p>
                     </div>
                     <div class="elite-border p-6 relative flex flex-col justify-between wolf-glow">
                         <div>
-                            <h4 class="text-2xl font-bold text-fightAmber mb-1">ELITE ANNUAL PACKAGE</h4>
-                            <p class="text-xs font-mono text-gray-400 mb-4">Best for serious fighters.</p>
-                            <p class="text-4xl font-oswald font-bold text-white mb-2">₹34,999</p>
-                            <p class="text-xs font-mono text-gray-400">Full access to all combat programs for 12 months.</p>
+                            <h4 class="text-2xl font-bold text-ice mb-1">ELITE ANNUAL PACKAGE</h4>
+                            <p class="text-xs font-mono text-mist mb-4">Best for serious fighters.</p>
+                            <p class="text-4xl font-oswald font-bold text-moon mb-2">₹34,999</p>
+                            <p class="text-xs font-mono text-mist">Full access to all combat programs for 12 months.</p>
                         </div>
-                        <a href="https://wa.me/917093772127?text=Hi,%20I%20am%20interested%20in%20the%20Elite%20Annual%20Combat%20Package." target="_blank" class="mt-6 block text-center grad-fire text-black font-oswald font-bold py-3 hover:brightness-110 transition">GET ELITE ACCESS</a>
+                        <a href="https://wa.me/917093772127?text=Hi,%20I%20am%20interested%20in%20the%20Elite%20Annual%20Combat%20Package." target="_blank" class="mt-6 block text-center bg-gradient-to-r from-moon to-ice text-night font-oswald font-bold py-3 hover:brightness-110 transition">GET ELITE ACCESS</a>
                     </div>
                 </div>
             </div>
 
             <!-- Strength & Policy -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <div class="border-2 border-fightGray p-6 bg-fightBlack">
-                    <h4 class="text-xl font-bold text-white mb-4"><i class="fa-solid fa-dumbbell text-fightRed mr-2"></i> STRENGTH TRAINING & CONDITIONING</h4>
+                <div class="border border-line p-6 bg-dusk">
+                    <h4 class="text-xl font-bold text-moon mb-4"><i class="fa-solid fa-dumbbell text-ice mr-2"></i> STRENGTH TRAINING & CONDITIONING</h4>
                     <div class="overflow-x-auto">
-                        <table class="w-full text-xs sm:text-sm text-left font-mono text-gray-300">
-                            <thead class="text-fightAmber border-b border-fightGray">
+                        <table class="w-full text-xs sm:text-sm text-left font-mono text-mist">
+                            <thead class="text-ice border-b border-line">
                                 <tr><th class="py-3 px-2">DURATION</th><th class="py-3 px-2">SINGLE</th><th class="py-3 px-2">COUPLE</th></tr>
                             </thead>
                             <tbody>
-                                <tr class="border-b border-fightGray/50"><td class="py-3 px-2 text-white font-bold">1 Month</td><td class="py-3 px-2">₹2,999</td><td class="py-3 px-2">₹4,999</td></tr>
-                                <tr class="border-b border-fightGray/50"><td class="py-3 px-2 text-white font-bold">3 Months</td><td class="py-3 px-2">₹6,999</td><td class="py-3 px-2">₹11,999</td></tr>
-                                <tr class="border-b border-fightGray/50"><td class="py-3 px-2 text-white font-bold">6 Months</td><td class="py-3 px-2">₹9,999</td><td class="py-3 px-2">₹17,999</td></tr>
-                                <tr><td class="py-3 px-2 text-white font-bold">1 Year</td><td class="py-3 px-2">₹14,999</td><td class="py-3 px-2">₹25,999</td></tr>
+                                <tr class="border-b border-line/60"><td class="py-3 px-2 text-moon font-bold">1 Month</td><td class="py-3 px-2">₹2,999</td><td class="py-3 px-2">₹4,999</td></tr>
+                                <tr class="border-b border-line/60"><td class="py-3 px-2 text-moon font-bold">3 Months</td><td class="py-3 px-2">₹6,999</td><td class="py-3 px-2">₹11,999</td></tr>
+                                <tr class="border-b border-line/60"><td class="py-3 px-2 text-moon font-bold">6 Months</td><td class="py-3 px-2">₹9,999</td><td class="py-3 px-2">₹17,999</td></tr>
+                                <tr><td class="py-3 px-2 text-moon font-bold">1 Year</td><td class="py-3 px-2">₹14,999</td><td class="py-3 px-2">₹25,999</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <div class="border-2 border-fightGray p-6 flex justify-between items-center bg-fightBlack">
+                    <div class="border border-line p-6 flex justify-between items-center bg-dusk">
                         <div>
-                            <h4 class="font-bold text-lg text-white">ONE-TIME ADMISSION FEE</h4>
-                            <p class="text-xs font-mono text-gray-400">Required for new enrollments.</p>
+                            <h4 class="font-bold text-lg text-moon">ONE-TIME ADMISSION FEE</h4>
+                            <p class="text-xs font-mono text-mist">Required for new enrollments.</p>
                         </div>
-                        <p class="text-3xl font-oswald font-bold text-fightAmber">₹500</p>
+                        <p class="text-3xl font-oswald font-bold text-ice">₹500</p>
                     </div>
-                    <div class="border-2 border-fightGray p-6 bg-fightBlack h-full">
-                        <h4 class="font-bold text-lg mb-2 text-fightRed"><i class="fa-solid fa-triangle-exclamation mr-2"></i> POLICY NOTICE</h4>
-                        <ul class="text-xs font-mono text-gray-400 space-y-2">
-                            <li>• All fees paid are strictly <strong class="text-white">Non-Refundable</strong> and <strong class="text-white">Non-Transferable</strong>.</li>
+                    <div class="border border-line p-6 bg-dusk h-full">
+                        <h4 class="font-bold text-lg mb-2 text-ice"><i class="fa-solid fa-triangle-exclamation mr-2"></i> POLICY NOTICE</h4>
+                        <ul class="text-xs font-mono text-mist space-y-2">
+                            <li>• All fees paid are strictly <strong class="text-moon">Non-Refundable</strong> and <strong class="text-moon">Non-Transferable</strong>.</li>
                             <li>• Participation implies consent to academy rules.</li>
                         </ul>
                     </div>
@@ -522,132 +477,132 @@
     </section>
 
     <!-- Timings Section -->
-    <section id="schedule" class="py-20 bg-fightBlack border-b border-fightGray">
+    <section id="schedule" class="py-20 bg-night night-sky border-b border-line">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">GYM <span class="text-fightAmber">TIMINGS</span></h2>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-4 border-ice pl-4 text-moon">GYM <span class="text-ice">TIMINGS</span></h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="border-2 border-fightGray p-8 bg-fightDark text-center hover:border-fightAmber transition-colors">
-                    <i class="fa-solid fa-sun text-4xl text-fightAmber mb-4"></i>
-                    <p class="font-mono text-gray-400 tracking-widest mb-2">MON – SAT</p>
-                    <h3 class="font-bold text-2xl text-white mb-4">MORNING SLOT</h3>
-                    <p class="text-3xl font-oswald font-bold text-fightRed">5:00 AM – 11:00 AM</p>
+                <div class="border border-line p-8 bg-dusk text-center hover:border-ice transition-colors">
+                    <i class="fa-solid fa-sun text-4xl text-ice mb-4"></i>
+                    <p class="font-mono text-mist tracking-widest mb-2">MON – SAT</p>
+                    <h3 class="font-bold text-2xl text-moon mb-4">MORNING SLOT</h3>
+                    <p class="text-3xl font-oswald font-bold text-ice">5:00 AM – 11:00 AM</p>
                 </div>
-                <div class="border-2 border-fightGray p-8 bg-fightDark text-center hover:border-fightAmber transition-colors">
-                    <i class="fa-solid fa-moon text-4xl text-fightAmber mb-4"></i>
-                    <p class="font-mono text-gray-400 tracking-widest mb-2">MON – SAT</p>
-                    <h3 class="font-bold text-2xl text-white mb-4">EVENING SLOT</h3>
-                    <p class="text-3xl font-oswald font-bold text-fightRed">5:00 PM – 11:00 PM</p>
+                <div class="border border-line p-8 bg-dusk text-center hover:border-ice transition-colors">
+                    <i class="fa-solid fa-moon text-4xl text-ice mb-4"></i>
+                    <p class="font-mono text-mist tracking-widest mb-2">MON – SAT</p>
+                    <h3 class="font-bold text-2xl text-moon mb-4">EVENING SLOT</h3>
+                    <p class="text-3xl font-oswald font-bold text-ice">5:00 PM – 11:00 PM</p>
                 </div>
             </div>
 
-            <div class="bg-fightRed text-white p-6 text-center border-2 border-fightRed">
-                <h3 class="font-bold text-2xl tracking-widest"><i class="fa-solid fa-lock mr-2"></i> SUNDAY: CLOSED</h3>
+            <div id="sunday-closed" class="bg-dusk text-moon p-6 text-center border border-ice/40">
+                <h3 class="font-bold text-2xl tracking-widest"><i class="fa-solid fa-lock mr-2 text-ice"></i> SUNDAY: CLOSED</h3>
             </div>
         </div>
     </section>
 
     <!-- Coaches Section -->
-    <section id="trainers" class="py-20 bg-white text-black">
+    <section id="trainers" class="py-20 bg-midnight night-sky">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-8 border-fightRed pl-4">MEET THE <span class="text-fightRed">COACHES</span></h2>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tighter mb-12 border-l-4 border-ice pl-4 text-moon">MEET THE <span class="text-ice">COACHES</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="border-2 border-black p-4 bg-white text-center hover:shadow-[6px_6px_0_0_var(--c-primary)] transition-shadow">
-                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                <div class="border border-line p-4 bg-dusk text-center hover:border-ice transition-colors">
+                    <div class="relative w-full h-56 border border-line overflow-hidden mb-4 bg-night flex items-center justify-center text-mist">
                         <i class="fa-solid fa-user text-4xl"></i>
                         <img src="coach-rahul.png" alt="Rahul" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                     </div>
-                    <h3 class="text-xl font-bold mb-1">RAHUL YADAV</h3>
-                    <p class="text-fightRed font-mono text-xs font-bold mb-2">Kickboxing & Karate</p>
-                    <p class="font-mono text-xs">Black belt in Karate. 4+ years teaching experience.</p>
+                    <h3 class="text-xl font-bold mb-1 text-moon">RAHUL YADAV</h3>
+                    <p class="text-ice font-mono text-xs font-bold mb-2">Kickboxing & Karate</p>
+                    <p class="font-mono text-xs text-mist">Black belt in Karate. 4+ years teaching experience.</p>
                 </div>
-                <div class="border-2 border-black p-4 bg-white text-center hover:shadow-[6px_6px_0_0_var(--c-primary)] transition-shadow">
-                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                <div class="border border-line p-4 bg-dusk text-center hover:border-ice transition-colors">
+                    <div class="relative w-full h-56 border border-line overflow-hidden mb-4 bg-night flex items-center justify-center text-mist">
                         <i class="fa-solid fa-user text-4xl"></i>
                         <img src="coach-zafar.png" alt="Zafar" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                     </div>
-                    <h3 class="text-xl font-bold mb-1">SYED ZAFAR</h3>
-                    <p class="text-fightRed font-mono text-xs font-bold mb-2">BJJ & MMA</p>
-                    <p class="font-mono text-xs">BJJ Champion & MMA expert. 4+ years teaching experience.</p>
+                    <h3 class="text-xl font-bold mb-1 text-moon">SYED ZAFAR</h3>
+                    <p class="text-ice font-mono text-xs font-bold mb-2">BJJ & MMA</p>
+                    <p class="font-mono text-xs text-mist">BJJ Champion & MMA expert. 4+ years teaching experience.</p>
                 </div>
-                <div class="border-2 border-black p-4 bg-white text-center hover:shadow-[6px_6px_0_0_var(--c-primary)] transition-shadow">
-                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                <div class="border border-line p-4 bg-dusk text-center hover:border-ice transition-colors">
+                    <div class="relative w-full h-56 border border-line overflow-hidden mb-4 bg-night flex items-center justify-center text-mist">
                         <i class="fa-solid fa-user text-4xl"></i>
                         <img src="coach-saif.png" alt="Saif" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                     </div>
-                    <h3 class="text-xl font-bold mb-1">SAIF</h3>
-                    <p class="text-fightRed font-mono text-xs font-bold mb-2">Fitness & Weightloss</p>
-                    <p class="font-mono text-xs">Certified Weight Management Trainer. 6+ years experience.</p>
+                    <h3 class="text-xl font-bold mb-1 text-moon">SAIF</h3>
+                    <p class="text-ice font-mono text-xs font-bold mb-2">Fitness & Weightloss</p>
+                    <p class="font-mono text-xs text-mist">Certified Weight Management Trainer. 6+ years experience.</p>
                 </div>
-                <div class="border-2 border-black p-4 bg-white text-center hover:shadow-[6px_6px_0_0_var(--c-primary)] transition-shadow">
-                    <div class="relative w-full h-56 border-2 border-black overflow-hidden mb-4 bg-gray-200 flex items-center justify-center text-gray-400">
+                <div class="border border-line p-4 bg-dusk text-center hover:border-ice transition-colors">
+                    <div class="relative w-full h-56 border border-line overflow-hidden mb-4 bg-night flex items-center justify-center text-mist">
                         <i class="fa-solid fa-user text-4xl"></i>
                         <img src="coach-hussain.png" alt="Hussain" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                     </div>
-                    <h3 class="text-xl font-bold mb-1">HUSSAIN</h3>
-                    <p class="text-fightRed font-mono text-xs font-bold mb-2">Calisthenics & Parkour</p>
-                    <p class="font-mono text-xs">Conditioning expert. 3 years of teaching experience.</p>
+                    <h3 class="text-xl font-bold mb-1 text-moon">HUSSAIN</h3>
+                    <p class="text-ice font-mono text-xs font-bold mb-2">Calisthenics & Parkour</p>
+                    <p class="font-mono text-xs text-mist">Conditioning expert. 3 years of teaching experience.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-fightBlack">
+    <section id="contact" class="py-20 bg-night night-sky">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 border-4 border-fightGray p-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 border border-line bg-midnight/60 p-8">
                 <div>
-                    <h2 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-8 text-white">STEP INTO<br><span class="text-fightRed">THE GYM</span></h2>
+                    <h2 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-8 text-moon">STEP INTO<br><span class="text-ice">THE GYM</span></h2>
                     <div class="space-y-6 font-mono text-sm">
                         <div class="flex items-start">
-                            <i class="fa-solid fa-location-dot text-fightRed text-2xl mt-1 mr-4 w-6 text-center"></i>
+                            <i class="fa-solid fa-location-dot text-ice text-2xl mt-1 mr-4 w-6 text-center"></i>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1">ACADEMY ADDRESS</h4>
-                                <p class="text-gray-400 mb-2">Near MLA Colony, Syed Nagar 2, Road No. 12, Banjara Hills, Hyderabad, Telangana – 500034</p>
-                                <a href="https://maps.app.goo.gl/VEPt8Wo6xeogy8PBA" target="_blank" class="text-fightAmber font-bold border-b border-fightAmber hover:text-white hover:border-white">GET DIRECTIONS</a>
+                                <h4 class="font-bold text-moon text-lg mb-1">ACADEMY ADDRESS</h4>
+                                <p class="text-mist mb-2">Near MLA Colony, Syed Nagar 2, Road No. 12, Banjara Hills, Hyderabad, Telangana – 500034</p>
+                                <a href="https://maps.app.goo.gl/VEPt8Wo6xeogy8PBA" target="_blank" class="text-ice font-bold border-b border-ice hover:text-moon hover:border-moon">GET DIRECTIONS</a>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <i class="fa-solid fa-phone text-fightRed text-2xl mt-1 mr-4 w-6 text-center"></i>
+                            <i class="fa-solid fa-phone text-ice text-2xl mt-1 mr-4 w-6 text-center"></i>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1">CALL / WHATSAPP</h4>
-                                <p class="text-gray-400">+91 70937 72127 (Mohd Amir)</p>
+                                <h4 class="font-bold text-moon text-lg mb-1">CALL / WHATSAPP</h4>
+                                <p class="text-mist">+91 70937 72127 (Mohd Amir)</p>
                             </div>
                         </div>
                         <div class="flex items-start">
-                            <i class="fa-solid fa-clock text-fightRed text-2xl mt-1 mr-4 w-6 text-center"></i>
+                            <i class="fa-solid fa-clock text-ice text-2xl mt-1 mr-4 w-6 text-center"></i>
                             <div>
-                                <h4 class="font-bold text-white text-lg mb-1">TIMINGS</h4>
-                                <p class="text-gray-400">Mon-Sat: 5:00 AM – 11:00 AM | 5:00 PM – 11:00 PM<br>Sunday: Closed</p>
+                                <h4 class="font-bold text-moon text-lg mb-1">TIMINGS</h4>
+                                <p class="text-mist">Mon-Sat: 5:00 AM – 11:00 AM | 5:00 PM – 11:00 PM<br>Sunday: Closed</p>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-8 h-48 w-full border-2 border-fightGray p-1">
+                    <div class="mt-8 h-48 w-full border border-line p-1">
                         <iframe title="Map" src="https://www.google.com/maps?q=17.4071212,78.4338152&z=15&output=embed" class="w-full h-full" style="border:0" loading="lazy"></iframe>
                     </div>
                 </div>
 
-                <div class="bg-fightDark p-6 sm:p-8 border-2 border-fightGray">
-                    <h3 class="text-2xl font-bold mb-2 text-white">BOOK A <span class="text-fightAmber">FREE TRIAL</span></h3>
-                    <p class="font-mono text-xs text-gray-400 mb-6">Fill this out to open a pre-written WhatsApp message.</p>
+                <div class="bg-dusk p-6 sm:p-8 border border-line">
+                    <h3 class="text-2xl font-bold mb-2 text-moon">BOOK A <span class="text-ice">FREE TRIAL</span></h3>
+                    <p class="font-mono text-xs text-mist mb-6">Fill this out to open a pre-written WhatsApp message.</p>
                     <form id="trial-form" class="space-y-4 font-mono text-sm">
                         <div>
-                            <label for="name" class="block text-gray-300 font-bold mb-2">FULL NAME</label>
-                            <input type="text" id="name" class="w-full bg-black border-2 border-fightGray p-3 text-white focus:outline-none focus:border-fightAmber" placeholder="Enter name">
-                            <p id="name-error" class="hidden text-fightRed mt-1 font-bold">Please enter your name.</p>
+                            <label for="name" class="block text-moon font-bold mb-2">FULL NAME</label>
+                            <input type="text" id="name" class="w-full bg-night border border-line p-3 text-moon placeholder-mist/50 focus:outline-none focus:border-ice" placeholder="Enter name">
+                            <p id="name-error" class="hidden text-ice mt-1 font-bold">Please enter your name.</p>
                         </div>
                         <div>
-                            <label for="program" class="block text-gray-300 font-bold mb-2">PROGRAM</label>
-                            <select id="program" class="w-full bg-black border-2 border-fightGray p-3 text-white focus:outline-none focus:border-fightAmber"></select>
+                            <label for="program" class="block text-moon font-bold mb-2">PROGRAM</label>
+                            <select id="program" class="w-full bg-night border border-line p-3 text-moon focus:outline-none focus:border-ice"></select>
                         </div>
                         <div>
-                            <label for="timeslot" class="block text-gray-300 font-bold mb-2">TIME SLOT</label>
-                            <select id="timeslot" class="w-full bg-black border-2 border-fightGray p-3 text-white focus:outline-none focus:border-fightAmber">
+                            <label for="timeslot" class="block text-moon font-bold mb-2">TIME SLOT</label>
+                            <select id="timeslot" class="w-full bg-night border border-line p-3 text-moon focus:outline-none focus:border-ice">
                                 <option value="Morning (5:00 AM - 11:00 AM)">Morning (5AM - 11AM)</option>
                                 <option value="Evening (5:00 PM - 11:00 PM)">Evening (5PM - 11PM)</option>
                             </select>
                         </div>
-                        <button type="submit" class="w-full bg-fightRed text-white border-2 border-fightRed font-oswald font-bold text-xl py-4 tracking-widest mt-4 fight-btn flex items-center justify-center">
+                        <button type="submit" class="w-full bg-moon text-night border-2 border-moon font-oswald font-bold text-xl py-4 tracking-widest mt-4 hover:bg-ice hover:border-ice fight-btn flex items-center justify-center">
                             <i class="fa-brands fa-whatsapp mr-2"></i> BOOK NOW
                         </button>
                     </form>
@@ -657,14 +612,14 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black border-t-4 border-fightRed py-8">
+    <footer class="bg-night border-t border-line py-8">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <h2 class="text-3xl font-oswald font-bold tracking-widest text-white mb-4">WOLF <span class="text-fightRed">MMA</span></h2>
-            <p class="font-mono text-xs text-gray-500 mb-4">&copy; 2016 - 2026 Wolf MMA Fitness Academy, Hyderabad.</p>
+            <h2 class="text-3xl font-oswald font-bold tracking-widest text-moon mb-4">WOLF <span class="text-ice">MMA</span></h2>
+            <p class="font-mono text-xs text-mist/70 mb-4">&copy; 2026 Wolf MMA Fitness Academy, Hyderabad.</p>
             <div class="flex justify-center space-x-4">
-                <a href="https://wa.me/917093772127" class="text-gray-400 hover:text-fightAmber" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-xl"></i></a>
-                <a href="https://www.instagram.com/wolf_mma_fitness/" class="text-gray-400 hover:text-fightAmber" aria-label="Instagram"><i class="fa-brands fa-instagram text-xl"></i></a>
-                <a href="https://www.youtube.com/@Ak.mma.fitness" class="text-gray-400 hover:text-fightAmber" aria-label="YouTube"><i class="fa-brands fa-youtube text-xl"></i></a>
+                <a href="https://wa.me/917093772127" class="text-mist hover:text-ice" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+                <a href="https://www.instagram.com/wolf_mma_fitness/" class="text-mist hover:text-ice" aria-label="Instagram"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="https://www.youtube.com/@Ak.mma.fitness" class="text-mist hover:text-ice" aria-label="YouTube"><i class="fa-brands fa-youtube text-xl"></i></a>
             </div>
         </div>
     </footer>
@@ -688,10 +643,10 @@
         function setPricingMode(mode) {
             const on = mode === 'single' ? btnSingle : btnCouple;
             const off = mode === 'single' ? btnCouple : btnSingle;
-            on.classList.add('bg-white', 'text-black');
-            on.classList.remove('text-white', 'hover:bg-fightGray');
-            off.classList.remove('bg-white', 'text-black');
-            off.classList.add('text-white', 'hover:bg-fightGray');
+            on.classList.add('bg-moon', 'text-night');
+            on.classList.remove('text-moon', 'hover:bg-dusk');
+            off.classList.remove('bg-moon', 'text-night');
+            off.classList.add('text-moon', 'hover:bg-dusk');
             priceDisplays.forEach(el => el.textContent = el.getAttribute('data-' + mode));
             typeDisplays.forEach(el => el.textContent = mode.toUpperCase());
         }
@@ -719,15 +674,15 @@
         programs.forEach((p) => {
             const msg = `Hello! I am interested in ${p.name}.`;
             grid.insertAdjacentHTML('beforeend', `
-                <div class="group border-b border-r border-fightGray p-6 hover:bg-fightDark hover:shadow-[inset_0_4px_0_0_var(--c-primary)] transition-all flex flex-col justify-between">
+                <div class="group border-b border-r border-line p-6 bg-night/40 hover:bg-dusk hover:shadow-[inset_0_3px_0_0_#9DB8FF] transition-all flex flex-col justify-between">
                     <div>
-                        <i class="fa-solid ${p.icon} text-3xl text-fightRed mb-4 transition-transform duration-300 group-hover:scale-125 group-hover:text-fightAmber"></i>
-                        <h3 class="text-2xl font-bold text-white mb-2">${p.name}</h3>
-                        <p class="font-mono text-sm text-gray-400 mb-6">${p.desc}</p>
+                        <i class="fa-solid ${p.icon} text-3xl text-ice mb-4 transition-transform duration-300 group-hover:scale-125"></i>
+                        <h3 class="text-2xl font-bold text-moon mb-2">${p.name}</h3>
+                        <p class="font-mono text-sm text-mist mb-6">${p.desc}</p>
                     </div>
                     <div class="flex gap-4 font-oswald font-bold text-sm">
-                        <a href="${p.link}" class="text-white hover:text-fightAmber transition-colors">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
-                        <a href="${waLink(msg)}" target="_blank" class="text-fightRed hover:text-fightAmber transition-colors">ENQUIRE</a>
+                        <a href="${p.link}" class="text-moon hover:text-ice transition-colors">DETAILS <i class="fa-solid fa-arrow-right ml-1"></i></a>
+                        <a href="${waLink(msg)}" target="_blank" class="text-ice hover:text-moon transition-colors">ENQUIRE</a>
                     </div>
                 </div>`);
             const opt = document.createElement('option');
@@ -765,7 +720,6 @@
         const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
         const finePointer  = matchMedia('(hover: hover) and (pointer: fine)').matches;
         const NAV_H = 84;
-        const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 
         /* ---------- 1. LIVE OPEN / CLOSED BADGE (always IST) ---------- */
         function gymStatus() {
@@ -785,7 +739,7 @@
         function renderBadges() {
             const { open, note } = gymStatus();
             document.querySelectorAll('.open-badge').forEach(b => {
-                b.style.color = open ? '#22c55e' : css('--c-primary');
+                b.style.color = open ? '#9DB8FF' : '#9AA8C2';
                 b.innerHTML = `<span class="pulse"></span>${open ? 'OPEN NOW' : 'CLOSED'} · ${note.toUpperCase()}`;
             });
         }
@@ -888,7 +842,7 @@
                 ease: 'power3.out', scrollTrigger: { trigger: '#about .grid-cols-2', start: 'top 85%' } });
 
             // Head coach card
-            const amirCard = document.querySelector('#about img[alt="Mohd Amir"]').closest('.border-4');
+            const amirCard = document.querySelector('.amir-card');
             gsap.from(amirCard, { x: 120, rotate: 4, opacity: 0, duration: 1, ease: 'power3.out',
                 scrollTrigger: { trigger: amirCard, start: 'top 80%' } });
             gsap.fromTo(amirCard.querySelector('img'), { yPercent: -10, scale: 1.2 },
@@ -899,8 +853,8 @@
             gsap.set(cardSel, { opacity: 0, y: 60 });
             ScrollTrigger.batch(cardSel, { start: 'top 90%', once: true,
                 onEnter: b => gsap.to(b, { opacity: 1, y: 0, stagger: 0.08, duration: 0.7, ease: 'power3.out' }) });
-            gsap.from('#schedule .bg-fightRed', { scaleX: 0, duration: 0.8, ease: 'power4.out',
-                scrollTrigger: { trigger: '#schedule .bg-fightRed', start: 'top 90%' } });
+            gsap.from('#sunday-closed', { scaleX: 0, duration: 0.8, ease: 'power4.out',
+                scrollTrigger: { trigger: '#sunday-closed', start: 'top 90%' } });
 
             // Single / Couple price flip
             ['toggle-single', 'toggle-couple'].forEach(id =>
@@ -949,16 +903,17 @@
             label.textContent = txt;
         });
 
-        // Wolf-claw slash on click
+        // Wolf-claw slash on click (moonlight colours)
         addEventListener('click', e => {
             const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
             s.setAttribute('viewBox', '0 0 60 60');
             s.setAttribute('class', 'claw');
-            const cols = ['var(--c-primary)', 'var(--c-accent)', 'var(--c-primary)'];
+            const cols = ['#E8EEF8', '#9DB8FF', '#E8EEF8'];
             s.innerHTML = [0, 15, 30].map((o, i) =>
-                `<path d="M${18 + o} 4 Q${10 + o} 30 ${4 + o} 56" fill="none" style="stroke:${cols[i]}" stroke-width="4" stroke-linecap="round"/>`).join('');
+                `<path d="M${18 + o} 4 Q${10 + o} 30 ${4 + o} 56" fill="none" stroke="${cols[i]}" stroke-width="3.5" stroke-linecap="round"/>`).join('');
             s.style.left = e.clientX - 30 + 'px';
             s.style.top  = e.clientY - 30 + 'px';
+            s.style.filter = 'drop-shadow(0 0 6px rgba(157,184,255,.8))';
             document.body.appendChild(s);
             gsap.timeline({ onComplete: () => s.remove() })
                 .fromTo(s.querySelectorAll('path'), { strokeDasharray: 70, strokeDashoffset: 70 },

@@ -1,0 +1,48 @@
+/* ===== WOLF MMA – motion.css ===== */
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* Hide hero content until the intro plays (auto-shows after 3s if scripts fail) */
+.js-motion #home > .relative.z-10 { visibility: hidden; animation: wolfShow 0s 3s forwards; }
+@keyframes wolfShow { to { visibility: visible; } }
+
+/* Scroll progress bar */
+#scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #e60000;
+  transform-origin: 0 50%; transform: scaleX(0); z-index: 60; pointer-events: none; }
+
+/* OPEN NOW badge */
+.open-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem;
+  border: 2px solid currentColor; background: rgba(0,0,0,.65);
+  font: 700 13px/1 'Oswald', sans-serif; letter-spacing: .18em; }
+.open-badge .pulse { width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: wolfPulse 1.4s infinite; }
+@keyframes wolfPulse { 0% { box-shadow: 0 0 0 0 currentColor; } 100% { box-shadow: 0 0 0 10px transparent; } }
+.hero-badge  { margin: -0.75rem 0 1.5rem; }
+.sched-badge { margin: -1.75rem 0 2.5rem; }
+
+/* Pulsing glow on POPULAR / ELITE cards */
+.wolf-glow { animation: wolfGlow 2.4s ease-in-out infinite; }
+@keyframes wolfGlow { 0%,100% { box-shadow: 0 0 0 rgba(230,0,0,0); } 50% { box-shadow: 0 0 30px rgba(230,0,0,.55); } }
+
+/* Custom cursor (mouse / trackpad only) */
+@media (hover: hover) and (pointer: fine) {
+  html.has-cursor, html.has-cursor * { cursor: none !important; }
+  html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
+}
+.c-dot, .c-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%; will-change: transform; }
+.c-dot  { width: 8px; height: 8px; background: #e60000; }
+.c-ring { width: 40px; height: 40px; border: 2px solid #fff; mix-blend-mode: difference;
+  display: grid; place-items: center; transition: width .25s, height .25s, background-color .25s, border-color .25s; }
+.c-ring span { font: 700 11px/1 'Oswald', sans-serif; letter-spacing: .15em; color: #000; opacity: 0; transition: opacity .2s; }
+.c-ring.is-hover { width: 64px; height: 64px; background: #fff; }
+.c-ring.is-cta   { width: 84px; height: 84px; background: #fff; mix-blend-mode: normal; border-color: #e60000; }
+.c-ring.is-cta span { opacity: 1; }
+
+/* Claw slash on click */
+.claw { position: fixed; width: 60px; height: 60px; z-index: 9998; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee, .open-badge .pulse, .wolf-glow { animation: none !important; }
+}

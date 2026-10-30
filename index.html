@@ -44,19 +44,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ================= COLOUR PALETTE – change only these ================= */
+           <style>
+        /* ================= COLOUR PALETTE – MIDNIGHT MONOCHROME ================= */
         :root {
-            --c-primary: #FF3B1F;   /* hot red-orange  */
-            --c-accent:  #FFB800;   /* electric amber  */
-            --c-black:   #070707;
-            --c-dark:    #111111;
-            --c-glow:    rgba(255, 59, 31, .45);
-            /* Other palettes to try (replace primary / accent / glow):
-               Classic Blood : #E60000 / #FF6A00 / rgba(230,0,0,.45)
-               Magenta Fire  : #FF1E56 / #FFAC41 / rgba(255,30,86,.45)
-               Toxic Volt    : #FF2E2E / #C6FF00 / rgba(255,46,46,.45)            */
+            --c-primary: #FFFFFF;              /* main – pure white        */
+            --c-accent:  #C9D6EA;              /* moonlight silver         */
+            --c-black:   #05070C;              /* midnight black           */
+            --c-dark:    #0C111B;              /* night navy               */
+            --c-light:   #EEF1F6;              /* cool off-white sections  */
+            --c-glow:    rgba(201, 214, 234, .35);
         }
-        .grad-fire { background: linear-gradient(90deg, var(--c-primary), #FF7A00 55%, var(--c-accent)); }
+        .grad-fire { background: linear-gradient(90deg, #FFFFFF, var(--c-accent) 60%, #8E9BB3); }
 
         /* ================= BASE ================= */
         body { font-family: 'Roboto Mono', monospace; background-color: var(--c-black); color: #fff; overflow-x: hidden; }
@@ -64,7 +62,7 @@
         ::selection { background: var(--c-accent); color: #000; }
 
         .fight-btn { transition: background-color .15s, color .15s, border-color .15s; }
-        .fight-btn:hover { background-color: var(--c-accent); color: #000; border-color: var(--c-accent); }
+        .fight-btn:hover { background-color: var(--c-accent) !important; color: #000 !important; border-color: var(--c-accent) !important; }
 
         .brutal-shadow { box-shadow: 8px 8px 0 0 var(--c-primary); }
         .beast-glow { text-shadow: 0 0 40px var(--c-glow); }
@@ -74,52 +72,101 @@
         .animate-marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
         .animate-marquee:hover { animation-play-state: paused; }
 
+        /* ================= MONOCHROME FIXES ================= */
+        /* White buttons / blocks get black text */
+        .bg-fightRed, .bg-fightRed i { color: #000 !important; }
+        .hover\:bg-fightRed:hover, .hover\:bg-fightRed:hover i { color: #000 !important; }
+
+        /* Hero headline – outlined "INNER BEAST" */
+        #home h1 .text-fightRed { color: transparent; -webkit-text-stroke: 2px #fff; }
+
+        /* Light sections (About, Coaches) */
+        #about.bg-white, #trainers.bg-white { background-color: var(--c-light); }
+        #about .text-fightRed, #trainers .text-fightRed { color: #000; }
+        #about h2 .text-fightRed, #about h3 .text-fightRed, #trainers h2 .text-fightRed { color: transparent; -webkit-text-stroke: 2px #000; }
+        #about .brutal-shadow, #trainers .brutal-shadow { box-shadow: 8px 8px 0 0 #000; }
+        #about .border-fightRed, #trainers .border-fightRed { border-color: #000; }
+        #trainers .grid > div:hover { box-shadow: 6px 6px 0 0 #000 !important; }
+        #about .grid-cols-2 > div:hover { background: #000 !important; color: #fff; }
+        #about .grid-cols-2 > div:hover i { color: #fff; }
+
+        /* Black & white photos – colour on hover */
+        #home video { filter: grayscale(1) contrast(1.15) brightness(.9); }
+        #about img, #trainers img { filter: grayscale(1) contrast(1.08); transition: filter .5s ease; }
+        #about img:hover, #trainers .grid > div:hover img, #about .border-4:hover img { filter: grayscale(0); }
+
+        /* Frosted night nav */
+        nav.bg-fightBlack { background-color: rgba(5, 7, 12, .72); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        nav.border-fightRed { border-bottom-width: 1px; border-color: rgba(201, 214, 234, .25); }
+
+        /* ================= NIGHT ATMOSPHERE ================= */
+        /* Moon glow in hero */
+        #home::after { content: ''; position: absolute; top: -25%; right: -15%; width: 70vw; height: 70vw;
+            max-width: 900px; max-height: 900px; border-radius: 50%; pointer-events: none; z-index: 1;
+            background: radial-gradient(circle, rgba(201, 214, 234, .16), transparent 62%); }
+
+        /* Faint stars in dark sections */
+        #programs, #plans, #schedule, #contact {
+            background-image:
+                radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.5), transparent 60%),
+                radial-gradient(1px 1px at 68% 42%, rgba(255,255,255,.35), transparent 60%),
+                radial-gradient(1.5px 1.5px at 38% 76%, rgba(201,214,234,.5), transparent 60%),
+                radial-gradient(1px 1px at 86% 88%, rgba(255,255,255,.3), transparent 60%),
+                radial-gradient(1px 1px at 52% 8%, rgba(201,214,234,.4), transparent 60%);
+            background-size: 420px 420px;
+        }
+
+        /* Film grain over everything */
+        body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .05;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
         /* ================= MOTION ================= */
         html.lenis, html.lenis body { height: auto; }
         .lenis.lenis-smooth { scroll-behavior: auto !important; }
         .lenis.lenis-stopped { overflow: hidden; }
 
-        /* Hero hidden until intro plays (auto-shows after 3s if scripts fail) */
         .js-motion #home > .relative.z-10 { visibility: hidden; animation: wolfShow 0s 3s forwards; }
         @keyframes wolfShow { to { visibility: visible; } }
 
-        #scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 4px; transform-origin: 0 50%;
-            transform: scaleX(0); z-index: 60; pointer-events: none;
-            background: linear-gradient(90deg, var(--c-primary), var(--c-accent)); }
+        #scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; transform-origin: 0 50%;
+            transform: scaleX(0); z-index: 80; pointer-events: none;
+            background: linear-gradient(90deg, #fff, var(--c-accent)); box-shadow: 0 0 12px var(--c-glow); }
 
         .open-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem;
-            border: 2px solid currentColor; background: rgba(0,0,0,.7);
+            border: 1px solid currentColor; background: rgba(5, 7, 12, .75); backdrop-filter: blur(8px);
             font: 700 13px/1 'Oswald', sans-serif; letter-spacing: .18em; }
         .open-badge .pulse { width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: wolfPulse 1.4s infinite; }
         @keyframes wolfPulse { 0% { box-shadow: 0 0 0 0 currentColor; } 100% { box-shadow: 0 0 0 10px transparent; } }
         .hero-badge  { margin: -0.75rem 0 1.5rem; }
         .sched-badge { margin: -1.75rem 0 2.5rem; }
 
-        .wolf-glow { animation: wolfGlow 2.4s ease-in-out infinite; }
-        @keyframes wolfGlow { 0%,100% { box-shadow: 0 0 0 rgba(0,0,0,0); } 50% { box-shadow: 0 0 32px var(--c-glow); } }
+        .wolf-glow { animation: wolfGlow 2.8s ease-in-out infinite; }
+        @keyframes wolfGlow { 0%,100% { box-shadow: 0 0 0 rgba(0,0,0,0); } 50% { box-shadow: 0 0 34px var(--c-glow); } }
 
         .elite-border { border: 2px solid transparent;
             background: linear-gradient(var(--c-black), var(--c-black)) padding-box,
-                        linear-gradient(135deg, var(--c-primary), var(--c-accent)) border-box; }
+                        linear-gradient(135deg, #fff, var(--c-accent), #5b6680) border-box; }
 
         /* Custom cursor (mouse / trackpad only) */
         @media (hover: hover) and (pointer: fine) {
             html.has-cursor, html.has-cursor * { cursor: none !important; }
             html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
         }
-        .c-dot, .c-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%; will-change: transform; }
-        .c-dot  { width: 8px; height: 8px; background: var(--c-primary); }
-        .c-ring { width: 40px; height: 40px; border: 2px solid #fff; mix-blend-mode: difference;
+        .c-dot, .c-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%;
+            will-change: transform; mix-blend-mode: difference; }
+        .c-dot  { width: 8px; height: 8px; background: #fff; }
+        .c-ring { width: 40px; height: 40px; border: 2px solid #fff;
             display: grid; place-items: center; transition: width .25s, height .25s, background-color .25s, border-color .25s; }
-        .c-ring span { font: 700 11px/1 'Oswald', sans-serif; letter-spacing: .15em; color: #000; opacity: 0; transition: opacity .2s; }
+        .c-ring span { font: 700 11px/1 'Oswald', sans-serif; letter-spacing: .15em; color: #fff; opacity: 0; transition: opacity .2s; }
         .c-ring.is-hover { width: 64px; height: 64px; background: #fff; }
-        .c-ring.is-cta   { width: 84px; height: 84px; background: var(--c-accent); border-color: var(--c-accent); mix-blend-mode: normal; }
+        .c-ring.is-cta   { width: 84px; height: 84px; background: #000; border-color: #fff; mix-blend-mode: normal; }
         .c-ring.is-cta span { opacity: 1; }
-        .claw { position: fixed; width: 60px; height: 60px; z-index: 9998; pointer-events: none; }
+        .claw { position: fixed; width: 60px; height: 60px; z-index: 9998; pointer-events: none; mix-blend-mode: difference; }
 
         @media (prefers-reduced-motion: reduce) {
             .animate-marquee, .open-badge .pulse, .wolf-glow { animation: none !important; }
         }
+    </style>
     </style>
 </head>
 <body class="bg-fightBlack text-white antialiased relative">

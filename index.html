@@ -229,7 +229,7 @@
         </div>
     </section>
 
-    <!-- About Section -->
+        <!-- About Section -->
     <section id="about" class="py-20 bg-midnight night-sky relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -273,39 +273,29 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Gallery -->
-            <div class="mt-24 pt-16 border-t border-line">
-                <h3 class="text-4xl sm:text-5xl font-bold tracking-tighter mb-12 text-center text-moon">
-                    INSIDE THE <span class="text-ice">GYM</span>
-                </h3>
-                <div class="relative w-full overflow-hidden py-4">
-                    <div class="animate-marquee gap-6 sm:gap-10 px-3">
-                        <!-- SET 1 -->
-                        <img src="gym-1.png"  alt="Gym 1"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-2.png"  alt="Gym 2"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-3.png"  alt="Gym 3"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-4.png"  alt="Gym 4"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-5.png"  alt="Gym 5"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-6.png"  alt="Gym 6"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-7.png"  alt="Gym 7"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-8.png"  alt="Gym 8"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-9.png"  alt="Gym 9"  loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-10.png" alt="Gym 10" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <!-- SET 2 (loop copy – removed automatically on desktop) -->
-                        <img src="gym-1.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-2.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-3.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-4.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-5.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-6.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-7.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-8.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-9.png"  alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                        <img src="gym-10.png" alt="" aria-hidden="true" loading="lazy" decoding="async" class="w-64 h-64 sm:w-80 sm:h-80 object-cover border border-line night-glow shrink-0">
-                    </div>
-                </div>
+    <!-- Inside the Gym – 3D fly-through gallery -->
+    <section id="gallery" class="relative bg-night border-y border-line">
+        <div class="g3d-viewport">
+            <div class="g3d-title">
+                <p class="font-mono text-xs tracking-[0.4em] text-ice mb-4">SCROLL TO STEP INSIDE</p>
+                <h2 class="text-5xl sm:text-7xl lg:text-8xl font-bold tracking-tighter text-moon">INSIDE THE <span class="text-ice">GYM</span></h2>
             </div>
+            <div class="g3d-stage">
+                <figure class="g3d-card"><img src="gym-1.png" alt="Inside Wolf MMA 1" decoding="async"><figcaption>WOLF · 01</figcaption></figure>
+                <figure class="g3d-card tall"><img src="gym-2.png" alt="Inside Wolf MMA 2" decoding="async"><figcaption>WOLF · 02</figcaption></figure>
+                <figure class="g3d-card"><img src="gym-3.png" alt="Inside Wolf MMA 3" decoding="async"><figcaption>WOLF · 03</figcaption></figure>
+                <figure class="g3d-card"><img src="gym-4.png" alt="Inside Wolf MMA 4" decoding="async"><figcaption>WOLF · 04</figcaption></figure>
+                <figure class="g3d-card tall"><img src="gym-5.png" alt="Inside Wolf MMA 5" decoding="async"><figcaption>WOLF · 05</figcaption></figure>
+                <figure class="g3d-card"><img src="gym-6.png" alt="Inside Wolf MMA 6" decoding="async"><figcaption>WOLF · 06</figcaption></figure>
+                <figure class="g3d-card"><img src="gym-7.png" alt="Inside Wolf MMA 7" decoding="async"><figcaption>WOLF · 07</figcaption></figure>
+                <figure class="g3d-card tall"><img src="gym-8.png" alt="Inside Wolf MMA 8" decoding="async"><figcaption>WOLF · 08</figcaption></figure>
+                <figure class="g3d-card"><img src="gym-9.png" alt="Inside Wolf MMA 9" decoding="async"><figcaption>WOLF · 09</figcaption></figure>
+                <figure class="g3d-card"><img src="gym-10.png" alt="Inside Wolf MMA 10" decoding="async"><figcaption>WOLF · 10</figcaption></figure>
+            </div>
+            <div class="g3d-counter font-oswald"><span id="g3d-num">01</span> / 10</div>
         </div>
     </section>
 

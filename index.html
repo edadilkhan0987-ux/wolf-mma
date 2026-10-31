@@ -54,11 +54,6 @@
         .night-glow { box-shadow: 0 0 40px rgba(157,184,255,.16); }
         .beast-glow { text-shadow: 0 0 40px rgba(157,184,255,.45); }
 
-        /* Gallery marquee (phones / tablets) */
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: scroll 40s linear infinite; }
-        .animate-marquee:hover { animation-play-state: paused; }
-
         /* ================= NIGHT ATMOSPHERE ================= */
         #home::after { content: ''; position: absolute; top: -25%; right: -15%; width: 70vw; height: 70vw;
             max-width: 900px; max-height: 900px; border-radius: 50%; pointer-events: none; z-index: 1;
@@ -77,7 +72,7 @@
         body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .045;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 
-          /* ================= 3D GALLERY ================= */
+        /* ================= 3D GALLERY ================= */
         .g3d-viewport { position: relative; height: 100vh; overflow: hidden; perspective: 1000px; perspective-origin: 50% 50%;
             background: radial-gradient(ellipse at center, #0A0F1C 0%, #05070D 70%); }
         .g3d-stage { position: absolute; inset: 0; transform-style: preserve-3d; }
@@ -103,6 +98,52 @@
             gap: 1rem; max-width: 1200px; margin: 3rem auto 0; }
         html:not(.js-motion) .g3d-card, html:not(.js-motion) .g3d-card.tall { position: relative; left: auto; top: auto; width: 100%; aspect-ratio: 4 / 3; }
         html:not(.js-motion) .g3d-counter { display: none; }
+
+        /* ================= MOTION ================= */
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-stopped { overflow: hidden; }
+
+        .js-motion #home > .relative.z-10 { visibility: hidden; animation: wolfShow 0s 3s forwards; }
+        @keyframes wolfShow { to { visibility: visible; } }
+
+        #scroll-progress { position: fixed; top: 0; left: 0; width: 100%; height: 3px; transform-origin: 0 50%;
+            transform: scaleX(0); z-index: 80; pointer-events: none;
+            background: linear-gradient(90deg, #E8EEF8, #9DB8FF); box-shadow: 0 0 12px rgba(157,184,255,.6); }
+
+        .open-badge { display: inline-flex; align-items: center; gap: .6rem; padding: .45rem 1rem;
+            border: 1px solid currentColor; background: rgba(5,7,13,.75); backdrop-filter: blur(8px);
+            font: 700 13px/1 'Oswald', sans-serif; letter-spacing: .18em; }
+        .open-badge .pulse { width: 9px; height: 9px; border-radius: 50%; background: currentColor; animation: wolfPulse 1.4s infinite; }
+        @keyframes wolfPulse { 0% { box-shadow: 0 0 0 0 currentColor; } 100% { box-shadow: 0 0 0 10px transparent; } }
+        .hero-badge  { margin: -0.75rem 0 1.5rem; }
+        .sched-badge { margin: -1.75rem 0 2.5rem; }
+
+        .wolf-glow { animation: wolfGlow 2.8s ease-in-out infinite; }
+        @keyframes wolfGlow { 0%,100% { box-shadow: 0 0 0 rgba(0,0,0,0); } 50% { box-shadow: 0 0 34px rgba(157,184,255,.35); } }
+
+        .elite-border { border: 2px solid transparent;
+            background: linear-gradient(#111829, #111829) padding-box,
+                        linear-gradient(135deg, #E8EEF8, #9DB8FF, #1E2840) border-box; }
+
+        /* Custom cursor (mouse / trackpad only) */
+        @media (hover: hover) and (pointer: fine) {
+            html.has-cursor, html.has-cursor * { cursor: none !important; }
+            html.has-cursor input, html.has-cursor textarea { cursor: text !important; }
+        }
+        .c-dot, .c-ring { position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none; border-radius: 50%; will-change: transform; }
+        .c-dot  { width: 8px; height: 8px; background: #9DB8FF; box-shadow: 0 0 10px #9DB8FF; }
+        .c-ring { width: 40px; height: 40px; border: 1.5px solid #E8EEF8; mix-blend-mode: difference;
+            display: grid; place-items: center; transition: width .25s, height .25s, background-color .25s, border-color .25s; }
+        .c-ring span { font: 700 11px/1 'Oswald', sans-serif; letter-spacing: .15em; color: #05070D; opacity: 0; transition: opacity .2s; }
+        .c-ring.is-hover { width: 64px; height: 64px; background: #E8EEF8; }
+        .c-ring.is-cta   { width: 84px; height: 84px; background: #9DB8FF; border-color: #9DB8FF; mix-blend-mode: normal; }
+        .c-ring.is-cta span { opacity: 1; }
+        .claw { position: fixed; width: 60px; height: 60px; z-index: 9998; pointer-events: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .open-badge .pulse, .wolf-glow { animation: none !important; }
+        }
     </style>
 </head>
 <body class="bg-night text-moon antialiased relative">
@@ -210,7 +251,7 @@
         </div>
     </section>
 
-        <!-- About Section -->
+    <!-- About Section -->
     <section id="about" class="py-20 bg-midnight night-sky relative overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -719,7 +760,7 @@
         renderBadges();
         setInterval(renderBadges, 60000);
 
-        if (reduceMotion || !window.gsap || !window.Lenis) return;
+        if (reduceMotion || !window.gsap || !window.Lenis) { document.documentElement.classList.remove('js-motion'); return; }
         gsap.registerPlugin(ScrollTrigger, SplitText);
 
         /* ---------- 2. SMOOTH SCROLL, PROGRESS BAR, NAV ---------- */
@@ -752,7 +793,6 @@
 
         /* ---------- 3. SCROLL ANIMATIONS ---------- */
         document.fonts.ready.then(() => {
-            const mm = gsap.matchMedia();
 
             // Hero intro
             const heroContent = document.querySelector('#home > .relative.z-10');
@@ -770,23 +810,6 @@
             gsap.to(heroContent, { yPercent: 30, opacity: 0, ease: 'none',
                 scrollTrigger: { trigger: '#home', start: 'top top', end: 'bottom top', scrub: true } });
 
-            // Gallery – pinned horizontal scroll (desktop); phones keep the marquee
-            mm.add('(min-width: 1024px)', () => {
-                const track = document.querySelector('.animate-marquee');
-                const viewport = track.parentElement;
-                const block = viewport.parentElement;
-                const clones = [...track.children].slice(10);
-                clones.forEach(c => c.remove());
-                track.style.animation = 'none';
-                gsap.to(track, {
-                    x: () => -(track.scrollWidth - viewport.clientWidth + 24),
-                    ease: 'none',
-                    scrollTrigger: { trigger: block, start: 'center center', end: () => '+=' + track.scrollWidth,
-                        pin: true, scrub: 1, invalidateOnRefresh: true }
-                });
-                return () => { clones.forEach(c => track.appendChild(c)); track.style.animation = ''; };
-            });
-
             // Stats counters
             gsap.from('#stats .stat', { y: 40, opacity: 0, stagger: 0.1, duration: 0.6, ease: 'power3.out',
                 scrollTrigger: { trigger: '#stats', start: 'top 85%' } });
@@ -796,13 +819,6 @@
                 gsap.to(o, { v: +el.dataset.to, duration: 1.8, ease: 'power2.out',
                     scrollTrigger: { trigger: el, start: 'top 90%' },
                     onUpdate: () => (el.textContent = Math.round(o.v)) });
-            });
-
-            // Section headings wipe in
-            gsap.utils.toArray('section h2').forEach(h => {
-                gsap.fromTo(h, { clipPath: 'inset(0 100% 0 0)', x: -30 },
-                    { clipPath: 'inset(0 0% 0 0)', x: 0, duration: 0.9, ease: 'power3.out',
-                      scrollTrigger: { trigger: h, start: 'top 85%' } });
             });
 
             // About paragraph – word-by-word light-up
@@ -818,6 +834,82 @@
                 scrollTrigger: { trigger: amirCard, start: 'top 80%' } });
             gsap.fromTo(amirCard.querySelector('img'), { yPercent: -10, scale: 1.2 },
                 { yPercent: 10, scale: 1.2, ease: 'none', scrollTrigger: { trigger: amirCard, scrub: true } });
+
+            // GALLERY – 3D fly-through
+            (() => {
+                const section = document.getElementById('gallery');
+                const stage   = section.querySelector('.g3d-stage');
+                const cards   = [...section.querySelectorAll('.g3d-card')];
+                const title   = section.querySelector('.g3d-title');
+                const num     = document.getElementById('g3d-num');
+
+                const SPACING = 900;     // depth gap between photos (bigger = more space)
+                const START   = -700;    // where the first photo starts
+                const FAR = -4200, NEAR = 250, GONE = 750;
+                const travel  = -(START - (cards.length - 1) * SPACING);   // ends with last photo in focus
+                // [x share of screen, y share of screen, tilt in degrees]
+                const pattern = [[-0.30, -0.10, 20], [0.30, 0.12, -18], [0, 0, 0], [-0.28, 0.16, 14], [0.30, -0.14, -16]];
+                let layout = [];
+
+                const computeLayout = () => {
+                    const m = innerWidth < 768;
+                    layout = cards.map((c, i) => {
+                        const [px, py, ry] = pattern[i % pattern.length];
+                        return { x: px * innerWidth * (m ? 0.45 : 1), y: py * innerHeight * (m ? 0.7 : 1),
+                                 ry: m ? ry * 0.5 : ry, z0: START - i * SPACING };
+                    });
+                };
+
+                const render = p => {
+                    const cam = p * travel;
+                    cards.forEach((c, i) => {
+                        const L = layout[i], z = L.z0 + cam;
+                        let o = 1;
+                        if (z > NEAR) o = 1 - (z - NEAR) / (GONE - NEAR);          // flying past → fade out
+                        else if (z < FAR / 2) o = (z - FAR) / (FAR / 2 - FAR);     // far away → fade in
+                        o = Math.max(0, Math.min(1, o));
+                        c.style.opacity = o;
+                        c.style.visibility = o < 0.01 ? 'hidden' : 'visible';
+                        c.style.transform = `translate(-50%, -50%) translate3d(${L.x}px, ${L.y}px, ${z}px) rotateY(${L.ry}deg)`;
+                    });
+                    const active = Math.min(cards.length - 1, Math.max(0, Math.round((cam + START) / SPACING)));
+                    num.textContent = String(active + 1).padStart(2, '0');
+                    title.style.opacity = Math.max(0, 1 - p * 10);
+                    title.style.transform = `scale(${1 + p * 2})`;
+                };
+
+                const proxy = { p: 0 };
+                computeLayout();
+                render(0);
+                gsap.to(proxy, {
+                    p: 1, ease: 'none',
+                    onUpdate: () => render(proxy.p),
+                    scrollTrigger: {
+                        trigger: section, start: 'top top',
+                        end: () => '+=' + innerHeight * cards.length * 0.6,   // scroll length
+                        pin: true, scrub: 1, invalidateOnRefresh: true
+                    }
+                });
+                ScrollTrigger.addEventListener('refreshInit', computeLayout);
+                ScrollTrigger.addEventListener('refresh', () => render(proxy.p));
+
+                // Mouse parallax – whole scene tilts with the cursor
+                if (finePointer) {
+                    const tiltX = gsap.quickTo(stage, 'rotationX', { duration: 0.8, ease: 'power3' });
+                    const tiltY = gsap.quickTo(stage, 'rotationY', { duration: 0.8, ease: 'power3' });
+                    section.addEventListener('mousemove', e => {
+                        tiltY((e.clientX / innerWidth - 0.5) * 8);
+                        tiltX(-(e.clientY / innerHeight - 0.5) * 6);
+                    });
+                }
+            })();
+
+            // Section headings wipe in (gallery title excluded – it has its own effect)
+            gsap.utils.toArray('section:not(#gallery) h2').forEach(h => {
+                gsap.fromTo(h, { clipPath: 'inset(0 100% 0 0)', x: -30 },
+                    { clipPath: 'inset(0 0% 0 0)', x: 0, duration: 0.9, ease: 'power3.out',
+                      scrollTrigger: { trigger: h, start: 'top 85%' } });
+            });
 
             // Cards rise in
             const cardSel = '#programs-grid > div, #plans .grid > div, #schedule .grid > div, #trainers .grid > div';
